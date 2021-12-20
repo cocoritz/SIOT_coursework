@@ -1,22 +1,16 @@
 import streamlit as st
 import streamlit.components.v1 as components
 import pymongo
+from pymongo import MongoClient
 
-# Initialize connection.
-#client = pymongo.MongoClient(**st.secrets["mongo"])
-client_UR = "mongodb+srv://Coline:LfCG6401@cluster0.82bjh.mongodb.net/Twitter_API?retryWrites=true&w=majority"
-client = pymongo.MongoClient(client_UR)
-mydb = client.Twitter # use or create a database named demo
-mycollection = mydb.tweets #use or create a collection named tweet_collection
+@st.cache(hash_funcs={MongoClient: id})
+def get_client():
+    client_UR = "mongodb+srv://Coline:LfCG6401@cluster0.82bjh.mongodb.net/Twitter_API?retryWrites=true&w=majority"
+    return MongoClient(client_UR)
 
-# Pull data from the collection.
-# Uses st.cache to only rerun when the query changes or after 10 min.
-@st.cache(ttl=600)
-def get_data():
-    db = client.mydb
-    items = db.mycollection.find()
-    items = list(items)  # make hashable for st.cache
-    return items
+client = get_client()
+db = client.Twitters
+collection = db.tweets
 
-items = get_data()
+st.write(collection.find()[0])
 

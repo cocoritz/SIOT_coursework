@@ -5,6 +5,9 @@ import pymongo
 # Initialize connection.
 client = pymongo.MongoClient(**st.secrets["mongo"])
 
+mydb = client.Twitter # use or create a database named demo
+mycollection = mydb.tweets #use or create a collection named tweet_collection
+
 # Pull data from the collection.
 # Uses st.cache to only rerun when the query changes or after 10 min.
 @st.cache(ttl=600)
@@ -16,6 +19,3 @@ def get_data():
 
 items = get_data()
 
-# Print results.
-for item in items:
-    st.write(f"{item['name']} has a :{item['pet']}:")

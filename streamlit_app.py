@@ -1,19 +1,21 @@
 import streamlit as st
 import streamlit.components.v1 as components
+import pymongo
 
-st.write("""
-# Siot web app
+# Initialize connection.
+client = pymongo.MongoClient(**st.secrets["mongo"])
 
-Shown are the stock closing price and volume of Google!
+# Pull data from the collection.
+# Uses st.cache to only rerun when the query changes or after 10 min.
+@st.cache(ttl=600)
+def get_data():
+    db = client.mydb
+    items = db.mycollection.find()
+    items = list(items)  # make hashable for st.cache
+    return items
 
-""")
+items = get_data()
 
-html_string = '''
-<h1>HTML string in RED</h1>
-
-<script language="javascript">
-  document.querySelector("h1").style.color = "red";
-</script>
-'''
-
-components.html(html_string)  # JavaScript works
+# Print results.
+for item in items:
+    st.write(f"{item['name']} has a :{item['pet']}:")

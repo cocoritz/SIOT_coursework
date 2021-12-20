@@ -3,7 +3,7 @@ import streamlit.components.v1 as components
 import pymongo
 
 # Initialize connection.
-client = pymongo.MongoClient(**st.secrets["mongo"])
+#client = pymongo.MongoClient(**st.secrets["mongo"])
 client_UR = "mongodb+srv://Coline:LfCG6401@cluster0.82bjh.mongodb.net/Twitter_API?retryWrites=true&w=majority"
 client = MongoClient(client_UR)
 mydb = client.Twitter # use or create a database named demo

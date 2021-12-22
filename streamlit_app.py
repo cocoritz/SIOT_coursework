@@ -12,5 +12,6 @@ client = get_client()
 db = client.Twitters
 collection = db.tweets
 
+
 st.write(collection.find()[0])
 

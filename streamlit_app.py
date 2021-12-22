@@ -4,7 +4,9 @@ import streamlit as st
 import pymongo
 
 # Initialize connection.
-client = pymongo.MongoClient(secrets["mongo"])
+#client = pymongo.MongoClient(secrets["mongo"])
+client = pymongo.MongoClient("mongodb+srv://Coline:LfCG6401@cluster0.82bjh.mongodb.net/twitter_API?retryWrites=true&w=majority")
+
 
 # Pull data from the collection.
 # Uses st.cache to only rerun when the query changes or after 10 min.

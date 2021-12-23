@@ -6,7 +6,7 @@ import pandas as pd
 import pymongo
 
 
-st. set_page_configurat(page_title='Survey Results')
+st.set_page_config(page_title='Survey Results')
 st.title('Sensing and IoT')
 tickers = ('#climatechange', '#energy','#energycrisis')
 dropdown= st.multiselect('Pick your #',tickers)

@@ -2,9 +2,12 @@
 
 import streamlit as st
 import pymongo
+import pandas as pd
 
 
 st.title('Sensing and IoT')
+tickers = ('#climatechange', '#energy','#energycrisis')
+dropdown= st.multiselect('Pick your #',tickers)
 
 #document.getElementById('app').innerHTML = `
 

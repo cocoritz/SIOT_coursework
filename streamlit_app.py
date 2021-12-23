@@ -2,7 +2,7 @@
 
 import streamlit as st
 import pymongo
-import './styles.css'
+#import './styles.css'
 
 # Initialize connection.
 #client = pymongo.MongoClient(**st.secrets["mongo"])

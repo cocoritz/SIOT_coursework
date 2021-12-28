@@ -23,7 +23,6 @@ image2='<iframe style="background: #FFFFFF;border: none;border-radius: 2px;box-s
 chart2= st.components.v1.html(image2, width=640, height=480, scrolling=False)
 
 
-
 #if len(dropdown)>0:
 # df=pymongo.client.mydb
 #  items = db.mycollection.find(dropdown,start,end)

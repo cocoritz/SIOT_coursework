@@ -14,22 +14,16 @@ import numpy as np
 
 # Initialize connection.
 client = pymongo.MongoClient(st.secrets["mongo"])
+@st.cache(ttl=600)
+mydb = myclient.mydatabase
+mycol = mydb.mycollection
+print(mycol)
 
 # Pull data from the collection.
 # Uses st.cache to only rerun when the query changes or after 10 min.
-@st.cache(ttl=600)
-def get_data():
-    
-    mydb = myclient.mydatabase
-    mycol = mydb.mycollection
-    items = list(mycol)  # make hashable for st.cache
-    return items
 
-items = get_data()
 
-# Print results.
-for item in items:
-    st.write(f"{item['name']} has a :{item['pet']}:")
+
 
 # def main():
 #     page = st.sidebar.selectbox(

@@ -109,18 +109,7 @@ def analyseddata():
     
 
     df = pd.merge(df_energy, df_tweets,on='create_at',how='right')
-    st.line_chart(df)
-    
-
-    trend_series = []
-    for i, name in enumerate(df.columns.values):
-        decomposed = seasonal_decompose(df[name])
-        trend_series.append(decomposed.trend)
-        figure = decomposed.plot()
-        st.plotly_chart(figure)
-        figure.axes[0].set_title(name)
-        trends = pd.concat(trend_series, axis=1)
-
+    #st.line_chart(df)
     
     ndata = df.copy(deep=True)
     ntrends = trends.copy(deep=True)
@@ -142,6 +131,18 @@ def analyseddata():
     #axs.set_title("Normalised data sources against time")
     #axs.legend()
     st.plotly_chart(figure)
+
+    trend_series = []
+    for i, name in enumerate(df.columns.values):
+        decomposed = seasonal_decompose(df[name])
+        trend_series.append(decomposed.trend)
+        figure = decomposed.plot()
+        st.plotly_chart(figure)
+        figure.axes[0].set_title(name)
+        trends = pd.concat(trend_series, axis=1)
+
+    
+    
     
     
 #     dim = len(df.columns.values)

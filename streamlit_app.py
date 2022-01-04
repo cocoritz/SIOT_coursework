@@ -4,8 +4,10 @@ import streamlit as st
 import pymongo
 import pandas as pd
 import pymongo
+from pymongo import MongoClient
 import streamlit.components.v1 as components
-#import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
+
 
 def main():
     page = st.sidebar.selectbox(
@@ -45,9 +47,23 @@ def main():
 
     if page == "Analysed data":
         analyseddata()
+        
+       
 def analyseddata():
     
-    
+    client_URI = "mongodb+srv://Coline:LfCG6401@cluster0.82bjh.mongodb.net/Twitter_API?retryWrites=true&w=majority"
+    #Load database
+    myclient = MongoClient(client_URI)
+    mydb = myclient.Twitter 
+    mycol = mydb.energy_and_climate_tweets
+
+    #Extract data and keep relevant columns
+    extracted_data = mycol.find({},{"create_at":1 ,"_id":1})
+    x_tweets = list(extracted_data)
+    df_tweets= pd.DataFrame(x_tweets)
+    print(df)
+
+  
 def main():
     page = st.sidebar.selectbox(
         "Select a Page",
@@ -59,7 +75,7 @@ def main():
     if page == "Intresting information":
         information()
         
-def information():
+#def information():
 
 if __name__ == "__main__":
     main()

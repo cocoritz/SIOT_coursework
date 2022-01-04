@@ -119,6 +119,7 @@ def analyseddata():
         figure = decomposed.plot()
         st.plotly_chart(figure)
         figure.axes[0].set_title(name)
+        trends = pd.concat(trend_series, axis=1)
 
     
     ndata = df.copy(deep=True)

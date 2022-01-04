@@ -14,12 +14,12 @@ import numpy as np
 
 # Initialize connection.
 client = pymongo.MongoClient(st.secrets["mongo"])
-mydb = client.mydatabase
-mycol = mydb.mycollection
+mydb = client.iot
+mycol = mydb.readings
 extracted_data = mycol.find({},{"create_at":1 ,"_id":1})
 x_tweets = list(extracted_data)
 df_tweets= pd.DataFrame(x_tweets)
-df.plt()
+
 
 
 # Pull data from the collection.

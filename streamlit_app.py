@@ -12,15 +12,7 @@ from datetime import datetime, timezone
 import statsmodels 
 
 def main():
-    page = st.sidebar.selectbox(
-        "Select a Page",
-        [
-            "Original data",
-            "Analysed data",
-            "Have a look"
-            
-        ]
-    )
+    page = st.sidebar.selectbox("Select a Page",["Original data", "Analysed data","Have a look"])
 
     #First Page
     if page == "Original data":
@@ -148,8 +140,9 @@ def information():
 
 
     t = Tweet("https://twitter.com/OReillyMedia/status/901048172738482176").component()
-
-
-    
+   
 if __name__ == "__main__":
     main()
+    
+    
+    

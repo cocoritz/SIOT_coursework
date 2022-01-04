@@ -13,7 +13,7 @@ import numpy as np
 
 
 # Initialize connection.
-client = pymongo.MongoClient(**st.secrets["mongo"])
+client = pymongo.MongoClient('mongodb+srv://Coline:LfCG6401@cluster0.82bjh.mongodb.net/Twitter_API_project?retryWrites=true&w=majority')
 
 # Pull data from the collection.
 # Uses st.cache to only rerun when the query changes or after 10 min.

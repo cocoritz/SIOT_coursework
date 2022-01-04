@@ -36,7 +36,8 @@ def homepage():
     chart2= st.components.v1.html(image2, width=640, height=480, scrolling=False)
 
 
-
+if __name__ == "__main__":
+    main()
 
 #if len(dropdown)>0:
 # df=pymongo.client.mydb

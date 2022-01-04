@@ -11,7 +11,16 @@ import requests
 import streamlit.components.v1 as components
 import numpy as np
 
+DATA_URL = ('https://github.com/cocoritz/SIOT_coursework/blob/0c7bf1799d0dde0eba405525bb74e4d2997b54f5/Tweets_climatechange_and_energy.csv')
+@st.cache
+def load_data():
+    data = pd.read_csv(DATA_URL)
+    data['Date'] = pd.to_datetime(data['Date']).dt.strftime('%Y-%m-%d')
+    return data
+df = load_data()
 
+# show data on streamlit
+ st.write(df
 # # Initialize connection.
 # client = pymongo.MongoClient(st.secrets["mongo"])
 
@@ -24,11 +33,11 @@ import numpy as np
 # x_tweets = list(extracted_data)
 # df_tweets= pd.DataFrame(extracted_tweets)
 
-url = 'https://github.com/cocoritz/SIOT_coursework/blob/0c7bf1799d0dde0eba405525bb74e4d2997b54f5/Tweets_climatechange_and_energy.csv'
-download = requests.get(url).content
-df_tweets = pd.read_csv(io.StringIO(download.decode('utf-8')))
+# url = 'https://github.com/cocoritz/SIOT_coursework/blob/0c7bf1799d0dde0eba405525bb74e4d2997b54f5/Tweets_climatechange_and_energy.csv'
+# download = requests.get(url).content
+# df_tweets = pd.read_csv(io.StringIO(download.decode('utf-8')))
 
-df_tweets.plot()
+# df_tweets.plot()
 
 
 #df_tweets['create_at']=pd.to_datetime(df_tweets['create_at'])

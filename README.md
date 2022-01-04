@@ -34,4 +34,4 @@ xxx: Script exploring the correlation between the two data streams
 xxx: Script to run the streamlit app 
 requirments.txt : specifying what python packages are required to run xxx
 
-### the porject was powered by aws, MongoDB Atlas and streamlit
+#### the project was powered by aws, MongoDB Atlas and streamlit

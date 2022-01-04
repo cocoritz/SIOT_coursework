@@ -11,7 +11,7 @@ import requests
 import streamlit.components.v1 as components
 import numpy as np
 from datetime import datetime, timezone
-import statsmodels.api as sm
+import statsmodels 
 
 
 
@@ -65,7 +65,7 @@ df = pd.merge(df_energy, df_tweets,on='create_at',how='right')
 
 trend_series = []
 for i, name in enumerate(df.columns.values):
-    decomposed = sm.tsa.seasonal_decompose(df[name])
+    decomposed = statsmodels.tsa.seasonal_decompose(df[name])
     trend_series.append(decomposed.trend)
     figure = decomposed.plot()
     figure.axes[0].set_title(name)

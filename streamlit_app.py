@@ -142,27 +142,22 @@ def analyseddata():
 
 #     axs.set_title("Normalised data sources against time")
 #     axs.legend()
-#       st.plotly_chart(figure)
+#     st.plotly_chart(figure)
 #     
     
     
-    def plot_scatter_matrix(df):
-        dim = len(data.columns.values)
-        fig, axs = newfigure(dim, dim, sharex='col', sharey='row', figsize=(10,10))
-        fig.tight_layout()
-        for row, iname in enumerate(data.columns.values):
-            for col, jname in enumerate(data.columns.values):
-                axs[row,col].scatter(data[jname], data[iname], s=5)
-                axs[row,col].set_aspect(1.0, adjustable='box', share=True)
-                if col == 0:
-                    axs[row,col].set_ylabel(iname)
-                if row == len(data.columns.values)-1:
-                    axs[row,col].set_xlabel(jname)
-            
-        return fig, axs
 
-   
-    fig, ax = plot_scatter_matrix(df)
+      dim = len(data.columns.values)
+      fig, axs = newfigure(dim, dim, sharex='col', sharey='row', figsize=(10,10))
+      fig.tight_layout()
+      for row, iname in enumerate(df.columns.values):
+          for col, jname in enumerate(data.columns.values):
+              axs[row,col].scatter(data[jname], data[iname], s=5)
+              axs[row,col].set_aspect(1.0, adjustable='box', share=True)
+              if col == 0:
+                  axs[row,col].set_ylabel(iname)
+               if row == len(data.columns.values)-1:
+                  axs[row,col].set_xlabel(jname)     
     st.pyplot(fig)
     
    

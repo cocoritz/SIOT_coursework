@@ -146,7 +146,7 @@ def analyseddata():
 #     
     
     
-    def plot_scatter_matrix(data):
+    def plot_scatter_matrix(df):
         dim = len(data.columns.values)
         fig, axs = newfigure(dim, dim, sharex='col', sharey='row', figsize=(10,10))
         fig.tight_layout()
@@ -161,8 +161,9 @@ def analyseddata():
             
         return fig, axs
 
-    figure1 = plot_scatter_matrix(df)
-    st.plotly_chart(figure1)
+   
+    fig, ax = plot_scatter_matrix(df)
+    st.pyplot(fig)
     
    
     #st.write(decomposed)

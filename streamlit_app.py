@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 import requests
 import streamlit.components.v1 as components
 import numpy as np
+from datetime import datetime, timezone
 
 DATA_URL = ('Tweets_climatechange_and_energy.csv')
 df_tweets = pd.read_csv(DATA_URL)

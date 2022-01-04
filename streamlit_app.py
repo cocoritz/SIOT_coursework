@@ -15,7 +15,6 @@ DATA_URL = ('https://github.com/cocoritz/SIOT_coursework/blob/0c7bf1799d0dde0eba
 @st.cache
 def load_data():
     data = pd.read_csv(DATA_URL)
-    data['Date'] = pd.to_datetime(data['Date']).dt.strftime('%Y-%m-%d')
     return data
 df = load_data()
 

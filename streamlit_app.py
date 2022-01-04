@@ -152,7 +152,7 @@ def analyseddata():
         for col, jname in enumerate(data.columns.values):
             axs[row,col].scatter(data[jname], data[iname], s=5)
             axs[row,col].set_aspect(1.0, adjustable='box', share=True)
-                if col == 0:
+            if col == 0:
                 axs[row,col].set_ylabel(iname)
                 if row == len(data.columns.values)-1:
                     axs[row,col].set_xlabel(jname)     

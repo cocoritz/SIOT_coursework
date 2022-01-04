@@ -36,13 +36,31 @@ df_tweets.drop('text',axis= 1, inplace= True)
 # Resample per hour
 df_tweets = df_tweets['number_of_tweets'].resample('H').sum()
 #st.write(df_tweets)
-df_tweets.plot()
+#df_tweets.plot()
 
+DATA_URL = ('Energy_consumption.csv')
+df_tweets = pd.read_csv(DATA_URL)
 
-# Pull data from the collection.
-# Uses st.cache to only rerun when the query changes or after 10 min.
+#Put same date format as tweets data 
+df_energy['ts']=pd.to_datetime(df_energy['ts'])
+df_energy.drop('sensors', axis = 1, inplace= True)
+df_energy= df_energy.rename(columns={'ts': 'create_at'})
+df_energy= df_energy.rename(columns={'newlight': 'Watts-hour'})
 
+#Keep relevant time
+filt = ((df_energy['create_at'] <= pd.to_datetime('2021-12-19 00:00'))& (df_energy['create_at'] >= pd.to_datetime('2021-12-05 17:00')))
+df_energy=df_energy.loc[filt]
 
+#Set time as index
+df_energy.set_index('create_at', inplace=True)
+
+#Resample 
+df_energy = df_energy['watts'].resample('H').sum()
+st.write(df_energy)
+
+df = pd.merge(df_energy, df_tweets,on='create_at',how='right')
+
+st.write(df)
 
 
 # def main():

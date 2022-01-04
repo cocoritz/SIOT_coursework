@@ -107,10 +107,12 @@ def analyseddata():
 
     df = pd.merge(df_energy, df_tweets,on='create_at',how='right')
     st.line_chart(df)
+    
+    
 
     #trend_series = []
     #for i, name in enumerate(df.columns.values):
-    #decomposed = statsmodels.tsa.seasonal_decompose(df_energy)
+    decomposed = statsmodels.tsa.seasonal_decompose(df_energy)
         #trend_series.append(decomposed.trend)
         #figure = decomposed.plot()
         #figure.axes[0].set_title(name)

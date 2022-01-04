@@ -150,11 +150,11 @@ def analyseddata():
     fig.tight_layout()
     for row, iname in enumerate(df.columns.values):
         for col, jname in enumerate(df.columns.values):
-            axs[row,col].scatter(data[jname], data[iname], s=5)
+            axs[row,col].scatter(df[jname], df[iname], s=5)
             axs[row,col].set_aspect(1.0, adjustable='box', share=True)
             if col == 0:
                 axs[row,col].set_ylabel(iname)
-                if row == len(data.columns.values)-1:
+                if row == len(df.columns.values)-1:
                     axs[row,col].set_xlabel(jname)     
     st.pyplot(fig)
     

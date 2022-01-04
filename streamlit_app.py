@@ -118,11 +118,8 @@ def analyseddata():
         trend_series.append(decomposed.trend)
         figure = decomposed.plot()
         st.plotly_chart(figure)
-#         figure.axes[0].set_title(name)
-#         figure.set_size_inches(20,8)
+        figure.axes[0].set_title(name)
 
-#     trends = pd.concat(trend_series, axis=1)
-#     st.plotly_chart(figure)
     
 #     ndata = df.copy(deep=True)
 #     ntrends = trends.copy(deep=True)
@@ -145,26 +142,27 @@ def analyseddata():
 
 #     axs.set_title("Normalised data sources against time")
 #     axs.legend()
-#     plt.show()
+#       st.plotly_chart(figure)
+#     
     
     
-#     def plot_scatter_matrix(data):
-#         dim = len(data.columns.values)
-#         fig, axs = newfigure(dim, dim, sharex='col', sharey='row', figsize=(10,10))
-#         fig.tight_layout()
-#         for row, iname in enumerate(data.columns.values):
-#             for col, jname in enumerate(data.columns.values):
-#                 axs[row,col].scatter(data[jname], data[iname], s=5)
-#                 axs[row,col].set_aspect(1.0, adjustable='box', share=True)
-#                 if col == 0:
-#                     axs[row,col].set_ylabel(iname)
-#                 if row == len(data.columns.values)-1:
-#                     axs[row,col].set_xlabel(jname)
+    def plot_scatter_matrix(data):
+        dim = len(data.columns.values)
+        fig, axs = newfigure(dim, dim, sharex='col', sharey='row', figsize=(10,10))
+        fig.tight_layout()
+        for row, iname in enumerate(data.columns.values):
+            for col, jname in enumerate(data.columns.values):
+                axs[row,col].scatter(data[jname], data[iname], s=5)
+                axs[row,col].set_aspect(1.0, adjustable='box', share=True)
+                if col == 0:
+                    axs[row,col].set_ylabel(iname)
+                if row == len(data.columns.values)-1:
+                    axs[row,col].set_xlabel(jname)
             
-#         return fig, axs
+        return fig, axs
 
-#     fig, axs = plot_scatter_matrix(df)
-#     plt.show()
+    fig, axs = plot_scatter_matrix(df)
+    st.plotly_chart(fig)
     
    
     #st.write(decomposed)

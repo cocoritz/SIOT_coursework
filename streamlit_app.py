@@ -145,6 +145,8 @@ def analyseddata():
         #plt.title('Resid')
         plt.subplots_adjust(hspace=1)
         st.pyplot() 
+       
+    decompose_series(df_energy)
 
     #trend_series = []
     #for i, name in enumerate(df.columns.values):

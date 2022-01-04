@@ -16,7 +16,7 @@ import numpy as np
 client = pymongo.MongoClient(st.secrets["mongo"])
 
 #@st.cache(ttl=600)
-
+@st.cache(hash_funcs={MongoClient: id})
 db = client.mydatabase
 items = db.mycollection.find()
 st.write(items.find()[0])

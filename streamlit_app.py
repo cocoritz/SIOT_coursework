@@ -152,7 +152,7 @@ def analyseddata():
 
     trend_series = []
     for i, name in enumerate(df.columns.values):
-    decomposed = seasonal_decompose(df_energy)
+        decomposed = seasonal_decompose(df_energy)
         trend_series.append(decomposed.trend)
         figure = decomposed.plot()
         figure.axes[0].set_title(name)

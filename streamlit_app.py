@@ -60,9 +60,9 @@ st.write(df_energy)
 
 df = pd.merge(df_energy, df_tweets,on='create_at',how='right')
 
-st.write(df)
+#st.write(df)
 
-
+st.line_chart(df)
 # def main():
 #     page = st.sidebar.selectbox(
 #         "Select a Page",

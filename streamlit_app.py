@@ -120,7 +120,6 @@ def analyseddata():
         figure.set_size_inches(20,8)
 
     trends = pd.concat(trend_series, axis=1)
-    st.set_option('deprecation.showPyplotGlobalUse', False)
     plt.show()
     
     

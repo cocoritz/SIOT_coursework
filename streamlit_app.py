@@ -12,21 +12,26 @@ import streamlit.components.v1 as components
 import numpy as np
 
 
-# Initialize connection.
-client = pymongo.MongoClient(st.secrets["mongo"])
+# # Initialize connection.
+# client = pymongo.MongoClient(st.secrets["mongo"])
 
-#@st.cache(ttl=600)
-@st.cache(hash_funcs={MongoClient: id})
-db = client.mydatabase
-items = db.mycollection.find()
-st.write(items.find()[0])
-   
-
+# #@st.cache(ttl=600)
+# @st.cache(hash_funcs={MongoClient: id})
+# db = client.mydatabase
+# items = db.mycollection.find()
+# st.write(items.find()[0])
 # extracted_data = mycol.find({},{"create_at":1 ,"_id":1})
 # x_tweets = list(extracted_data)
 # df_tweets= pd.DataFrame(extracted_tweets)
 
-# df_tweets['create_at']=pd.to_datetime(df_tweets['create_at'])
+url = https://github.com/cocoritz/SIOT_coursework/blob/0c7bf1799d0dde0eba405525bb74e4d2997b54f5/Tweets_climatechange_and_energy.csv
+download = requests.get(url).content
+df_tweets = pd.read_csv(io.StringIO(download.decode('utf-8')))
+
+df_tweets.plot()
+
+
+#df_tweets['create_at']=pd.to_datetime(df_tweets['create_at'])
 # df_tweets['create_at'] = df_tweets['create_at'].apply(remove_timezone)
 
 # #Keep relevant time

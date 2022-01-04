@@ -80,8 +80,8 @@ def analyseddata():
 
     # Resample per hour
     df_tweets = df_tweets['number_of_tweets'].resample('H').sum()
-    st.write(df_tweets)
-    
+    #st.write(df_tweets)
+    st.line_chart(df_tweets)
 
     DATA_URL = ('Energy_consumption.csv')
     df_energy = pd.read_csv(DATA_URL)
@@ -101,7 +101,8 @@ def analyseddata():
 
     #Resample 
     df_energy = df_energy['Watts-hour'].resample('H').sum()
-    st.write(df_energy)
+    #st.write(df_energy)
+    st.line_chart(df_energy)
     
 
     df = pd.merge(df_energy, df_tweets,on='create_at',how='right')

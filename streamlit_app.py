@@ -12,6 +12,7 @@ import numpy as np
 from datetime import datetime, timezone
 import statsmodels 
 from statsmodels.tsa.seasonal import seasonal_decompose
+import plotly.tools
 
 def main():
     page = st.sidebar.selectbox("Select a Page",["Original data", "Analysed data","Have a look"])

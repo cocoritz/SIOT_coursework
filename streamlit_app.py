@@ -59,20 +59,20 @@ df_energy.set_index('create_at', inplace=True)
 df_energy = df_energy['Watts-hour'].resample('H').sum()
 #st.write(df_energy)
 
-df = pd.merge(df_energy, df_tweets,on='create_at',how='right')
+#df = pd.merge(df_energy, df_tweets,on='create_at',how='right')
 
-trend_series = []
-for i, name in enumerate(df.columns.values):
-    decomposed = statsmodels.tsa.seasonal_decompose(df[name])
-    trend_series.append(decomposed.trend)
-    figure = decomposed.plot()
-    figure.axes[0].set_title(name)
-    figure.set_size_inches(20,8)
+#trend_series = []
+#for i, name in enumerate(df.columns.values):
+decomposed = statsmodels.tsa.seasonal_decompose(df_energy)
+    #trend_series.append(decomposed.trend)
+    #figure = decomposed.plot()
+    #figure.axes[0].set_title(name)
+    #figure.set_size_inches(20,8)
 
-trends = pd.concat(trend_series, axis=1)
-st.line_chart(trends)
+#trends = pd.concat(trend_series, axis=1)
+#st.line_chart(trends)
 
-#st.write(df)
+st.write(decomposed)
 
 
 # def main():

@@ -13,11 +13,11 @@ The data collection directory contains all scripts related to the collection of 
 
 **Files description:**
 
-`lightsensors_to_MongoDB.ino` : Script for programing an esp32 which collect flashing light on my electricity meters ( 1 flashes = 1 Wh)
-`xxx` : Script for calling and collecting the tweets related to climate change and energy 
-`xxx` : script to set up AWS services to run continously xxx
+-`lightsensors_to_MongoDB.ino` : Script for programing an esp32 which collect flashing light on my electricity meters ( 1 flashes = 1 Wh)
+-`xxx` : Script for calling and collecting the tweets related to climate change and energy
+-`xxx` : script to set up AWS services to run continously `xxx`
 
-`xxx and xxx` are csv files containing the data as a backup for Mongodb 
+-`xxx and xxx` are csv files containing the data as a backup for Mongodb 
 
 #### It is important to note that the script files will not run without the API keys and credentials files. These have not been committed to GitHub.
 
@@ -27,11 +27,11 @@ The data analysis contains all script related to cleaning, correlation, predicti
 
 **Files description:**
 
-`xxx`: Script cleaning and analysising the twitter data
-`xxx`: Script cleaning, analysing and predicting the energy consumption data
-`xxx`: Script exploring the correlation between the two data streams 
+-`xxx`: Script cleaning and analysising the twitter data
+-`xxx`: Script cleaning, analysing and predicting the energy consumption data
+-`xxx`: Script exploring the correlation between the two data streams 
 
-`xxx`: Script to run the streamlit app 
-requirments.txt : specifying what python packages are required to run xxx
+-`xxx`: Script to run the streamlit app 
+-requirments.txt : specifying what python packages are required to run xxx
 
 #### the project was powered by aws, MongoDB Atlas and streamlit

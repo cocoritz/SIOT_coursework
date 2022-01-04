@@ -136,7 +136,7 @@ def analyseddata():
     for name in trends.columns.values:
         trends[name] = ( trends[name] - np.mean(trends[name]) ) / np.std(trends[name])
         
-     fig, axs = newfigure()
+    fig, axs = newfigure()
 
     for name in ndata.columns.values: 
         axs.plot(ndata[name])
@@ -153,7 +153,7 @@ def analyseddata():
         for row, iname in enumerate(data.columns.values):
             for col, jname in enumerate(data.columns.values):
                 axs[row,col].scatter(data[jname], data[iname], s=5)
-#               axs[row,col].set_aspect(1.0, adjustable='box', share=True)
+                axs[row,col].set_aspect(1.0, adjustable='box', share=True)
                 if col == 0:
                     axs[row,col].set_ylabel(iname)
                 if row == len(data.columns.values)-1:

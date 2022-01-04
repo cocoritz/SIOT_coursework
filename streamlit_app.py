@@ -56,7 +56,6 @@ def homepage():
 
        
 def analyseddata():
-    
     client_URI = "mongodb+srv://Coline:LfCG6401@cluster0.82bjh.mongodb.net/Twitter_API?retryWrites=true&w=majority"
     #Load database
     myclient = MongoClient(client_URI)

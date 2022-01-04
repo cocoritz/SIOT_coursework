@@ -159,8 +159,9 @@ def analyseddata():
         figure.set_size_inches(20,8)
 
     trends = pd.concat(trend_series, axis=1)
-    st.line_chart()
-
+    plt.show()trend_series = []
+    
+   
     #st.write(decomposed)
      
 def information():

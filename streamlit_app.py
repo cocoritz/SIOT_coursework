@@ -36,7 +36,7 @@ df_tweets.drop('text',axis= 1, inplace= True)
 # Resample per hour
 df_tweets = df_tweets['number_of_tweets'].resample('H').sum()
 #st.write(df_tweets)
-st.plot(df_tweets)
+df_tweets.plot()
 
 
 # Pull data from the collection.

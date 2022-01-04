@@ -108,7 +108,7 @@ def analyseddata():
     df = pd.merge(df_energy, df_tweets,on='create_at',how='right')
     st.line_chart(df)
     
-    def decompose_series(df_energy):
+    def decompose_series(df_tweets):
         '''
         This function applies a seasonal decomposition to a time series. It will generate a season plot, a trending plot, and, finally, a resid plot
 
@@ -121,7 +121,7 @@ def analyseddata():
         ax3 = plt.subplot(313)
 
         try:
-            decomposition = statsmodels.tsa.seasonal_decompose(df_energy)
+            decomposition = statsmodels.tsa.seasonal_decompose(df_tweets)
 
         except AttributeError:
             error_message = '''
@@ -146,7 +146,7 @@ def analyseddata():
         plt.subplots_adjust(hspace=1)
         st.pyplot() 
        
-    decompose_series(df_energy)
+    decompose_series(df_tweets)
 
     #trend_series = []
     #for i, name in enumerate(df.columns.values):

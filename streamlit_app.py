@@ -121,7 +121,7 @@ def analyseddata():
         ax3 = plt.subplot(313)
 
         try:
-            decomposition = seasonal_decompose(df_energy)
+            decomposition = statsmodels.tsa.seasonal_decompose(df_energy)
 
         except AttributeError:
             error_message = '''

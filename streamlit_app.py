@@ -149,13 +149,13 @@ def analyseddata():
     fig, axs = newfigure(dim, dim, sharex='col', sharey='row', figsize=(10,10))
     fig.tight_layout()
     for row, iname in enumerate(df.columns.values):
-    for col, jname in enumerate(data.columns.values):
-        axs[row,col].scatter(data[jname], data[iname], s=5)
-        axs[row,col].set_aspect(1.0, adjustable='box', share=True)
-            if col == 0:
-            axs[row,col].set_ylabel(iname)
-            if row == len(data.columns.values)-1:
-                axs[row,col].set_xlabel(jname)     
+        for col, jname in enumerate(data.columns.values):
+            axs[row,col].scatter(data[jname], data[iname], s=5)
+            axs[row,col].set_aspect(1.0, adjustable='box', share=True)
+                if col == 0:
+                axs[row,col].set_ylabel(iname)
+                if row == len(data.columns.values)-1:
+                    axs[row,col].set_xlabel(jname)     
     st.pyplot(fig)
     
    

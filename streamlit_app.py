@@ -145,7 +145,7 @@ def analyseddata():
 #     st.plotly_chart(figure)
 #     
     
-    dim = len(data.columns.values)
+    dim = len(df.columns.values)
     fig, axs = newfigure(dim, dim, sharex='col', sharey='row', figsize=(10,10))
     fig.tight_layout()
     for row, iname in enumerate(df.columns.values):

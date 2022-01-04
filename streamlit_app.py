@@ -121,42 +121,40 @@ def analyseddata():
         figure.axes[0].set_title(name)
 
     
-#     ndata = df.copy(deep=True)
-#     ntrends = trends.copy(deep=True)
+    ndata = df.copy(deep=True)
+    ntrends = trends.copy(deep=True)
+    stats = {}
 
-#     stats = {}
+    for name in ndata.columns.values:
+        mean = np.mean(ndata[name])
+        stdv = np.std(ndata[name])
+        stats[name] = {"mean":mean,"stdv":stdv}
+        ndata[name] = (ndata[name] - mean) / stdv
 
-#     for name in ndata.columns.values:
-#         mean = np.mean(ndata[name])
-#         stdv = np.std(ndata[name])
-#         stats[name] = {"mean":mean,"stdv":stdv}
-#         ndata[name] = (ndata[name] - mean) / stdv
-
-#     for name in trends.columns.values:
-#         trends[name] = ( trends[name] - np.mean(trends[name]) ) / np.std(trends[name])
+    for name in trends.columns.values:
+        trends[name] = ( trends[name] - np.mean(trends[name]) ) / np.std(trends[name])
         
-#     fig, axs = newfigure()
+    figure = plt.subplots()
+    for name in ndata.columns.values: 
+        axs.plot(ndata[name])
 
-#     for name in ndata.columns.values: 
-#         axs.plot(ndata[name])
-
-#     axs.set_title("Normalised data sources against time")
-#     axs.legend()
-#     st.plotly_chart(figure)
-#     
+    axs.set_title("Normalised data sources against time")
+    axs.legend()
+    st.plotly_chart(figure)
     
-    dim = len(df.columns.values)
-    fig, axs = newfigure(dim, dim, sharex='col', sharey='row', figsize=(10,10))
-    fig.tight_layout()
-    for row, iname in enumerate(df.columns.values):
-        for col, jname in enumerate(df.columns.values):
-            axs[row,col].scatter(df[jname], df[iname], s=5)
-            axs[row,col].set_aspect(1.0, adjustable='box', share=True)
-            if col == 0:
-                axs[row,col].set_ylabel(iname)
-                if row == len(df.columns.values)-1:
-                    axs[row,col].set_xlabel(jname)     
-    st.pyplot(fig)
+    
+#     dim = len(df.columns.values)
+#     fig, axs = newfigure(dim, dim, sharex='col', sharey='row', figsize=(10,10))
+#     fig.tight_layout()
+#     for row, iname in enumerate(df.columns.values):
+#         for col, jname in enumerate(df.columns.values):
+#             axs[row,col].scatter(df[jname], df[iname], s=5)
+#             axs[row,col].set_aspect(1.0, adjustable='box', share=True)
+#             if col == 0:
+#                 axs[row,col].set_ylabel(iname)
+#                 if row == len(df.columns.values)-1:
+#                     axs[row,col].set_xlabel(jname)     
+#     st.pyplot(fig)
     
    
     #st.write(decomposed)

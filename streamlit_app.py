@@ -119,8 +119,8 @@ def analyseddata():
         figure.axes[0].set_title(name)
         figure.set_size_inches(20,8)
 
-    trends = pd.concat(trend_series, axis=1)
-    plt.show()
+    fig = pd.concat(trend_series, axis=1)
+    st.plotly_chart(fig, use_container_width=True)
     
     ndata = df.copy(deep=True)
     ntrends = trends.copy(deep=True)

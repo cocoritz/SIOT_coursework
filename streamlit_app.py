@@ -11,6 +11,9 @@ import requests
 import streamlit.components.v1 as components
 import numpy as np
 from datetime import datetime, timezone
+import statsmodels.api as sm
+
+
 
 DATA_URL = ('Tweets_climatechange_and_energy.csv')
 df_tweets = pd.read_csv(DATA_URL)
@@ -60,9 +63,20 @@ st.write(df_energy)
 
 df = pd.merge(df_energy, df_tweets,on='create_at',how='right')
 
+trend_series = []
+for i, name in enumerate(df.columns.values):
+    decomposed = sm.tsa.seasonal_decompose(df[name])
+    trend_series.append(decomposed.trend)
+    figure = decomposed.plot()
+    figure.axes[0].set_title(name)
+    figure.set_size_inches(20,8)
+
+trends = pd.concat(trend_series, axis=1)
+st.line_chart(trends)
+
 #st.write(df)
 
-st.line_chart(df)
+
 # def main():
 #     page = st.sidebar.selectbox(
 #         "Select a Page",

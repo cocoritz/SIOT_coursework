@@ -11,7 +11,7 @@ import requests
 import streamlit.components.v1 as components
 import numpy as np
 
-DATA_URL = ('https://github.com/cocoritz/SIOT_coursework/blob/0c7bf1799d0dde0eba405525bb74e4d2997b54f5/Tweets_climatechange_and_energy.csv')
+DATA_URL = ('cocoritz/SIOT_coursework/blob/0c7bf1799d0dde0eba405525bb74e4d2997b54f5/Tweets_climatechange_and_energy.csv')
 df = pd.read_csv(DATA_URL)
 st.write(df)
 

@@ -57,7 +57,7 @@ df_energy.set_index('create_at', inplace=True)
 
 #Resample 
 df_energy = df_energy['Watts-hour'].resample('H').sum()
-st.write(df_energy)
+#st.write(df_energy)
 
 df = pd.merge(df_energy, df_tweets,on='create_at',how='right')
 

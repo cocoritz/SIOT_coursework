@@ -39,7 +39,7 @@ df_tweets = df_tweets['number_of_tweets'].resample('H').sum()
 #df_tweets.plot()
 
 DATA_URL = ('Energy_consumption.csv')
-df_tweets = pd.read_csv(DATA_URL)
+df_energy = pd.read_csv(DATA_URL)
 
 #Put same date format as tweets data 
 df_energy['ts']=pd.to_datetime(df_energy['ts'])

@@ -159,7 +159,10 @@ def analyseddata():
         figure.set_size_inches(20,8)
 
     trends = pd.concat(trend_series, axis=1)
-    st.pyplot()
+    fig, ax = plt.subplots()
+    #ax.scatter([1, 2, 3], [1, 2, 3])
+    st.pyplot(fig)
+ 
     
    
     #st.write(decomposed)

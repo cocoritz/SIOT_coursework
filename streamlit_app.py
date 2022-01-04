@@ -6,7 +6,7 @@ import pandas as pd
 import pymongo
 from pymongo import MongoClient
 import streamlit.components.v1 as components
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 import requests
 import streamlit.components.v1 as components
 

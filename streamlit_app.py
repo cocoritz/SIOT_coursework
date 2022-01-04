@@ -5,7 +5,7 @@ import pymongo
 import pandas as pd
 import pymongo
 import streamlit.components.v1 as components
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 
 def main():
     page = st.sidebar.selectbox(

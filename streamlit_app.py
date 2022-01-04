@@ -15,7 +15,8 @@ from datetime import datetime, timezone
 DATA_URL = ('Tweets_climatechange_and_energy.csv')
 df_tweets = pd.read_csv(DATA_URL)
 
-
+def remove_timezone(dt):
+    return dt.replace(tzinfo=None)
 
 df_tweets['create_at']=pd.to_datetime(df_tweets['create_at'])
 df_tweets['create_at'] = df_tweets['create_at'].apply(remove_timezone)

@@ -16,17 +16,11 @@ import numpy as np
 client = pymongo.MongoClient(st.secrets["mongo"])
 
 #@st.cache(ttl=600)
-def get_data():
-    db = client.mydatabase
-    items = db.mycollection.find()
-    items = list(items)  # make hashable for st.cache
-    return items
 
-items = get_data()
-
-# Print results.
-for item in items:
-    st.write(f"{item['name']} has a :{item['pet']}:")
+db = client.mydatabase
+items = db.mycollection.find()
+st.write(items.find()[0])
+   
 
 # extracted_data = mycol.find({},{"create_at":1 ,"_id":1})
 # x_tweets = list(extracted_data)

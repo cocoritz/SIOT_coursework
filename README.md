@@ -13,7 +13,7 @@ The data collection directory contains all scripts related to the collection of 
 
 **Files description:**
 
- : Script for programing an esp32 which collect flashing light on my electricity meters ( 1 flashes = 1 Wh)
+lightsensors_to_MongoDB.ino/ : Script for programing an esp32 which collect flashing light on my electricity meters ( 1 flashes = 1 Wh)
 xxx : Script for calling and collecting the tweets related to climate change and energy 
 xxx : script to set up AWS services to run continously xxx
 

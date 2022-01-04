@@ -136,8 +136,8 @@ def analyseddata():
         trends[name] = ( trends[name] - np.mean(trends[name]) ) / np.std(trends[name])
         
     figure = plt.subplots()
-    for name in ndata.columns.values: 
-        axs.plot(ndata[name])
+    #for name in ndata.columns.values: 
+        #axs.plot(ndata[name])
 
     axs.set_title("Normalised data sources against time")
     axs.legend()

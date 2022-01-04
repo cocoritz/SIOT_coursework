@@ -15,7 +15,7 @@ import numpy as np
 # Initialize connection.
 client = pymongo.MongoClient(st.secrets["mongo"])
 
-@st.cache(ttl=600)
+#@st.cache(ttl=600)
 def get_data():
     db = client.mydatabase
     items = db.mycollection.find()

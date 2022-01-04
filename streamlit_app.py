@@ -30,7 +30,7 @@ df_tweets.set_index('create_at', inplace=True)
 
 #Simplify calculation
 df_tweets['number_of_tweets'] = 1
-df_tweets.drop('_id',axis= 1 inplace= True)
+df_tweets.drop('_id',axis= 1, inplace= True)
 df_tweets.drop('text',axis= 1, inplace= True)
 
 # Resample per hour

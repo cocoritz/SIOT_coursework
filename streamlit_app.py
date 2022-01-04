@@ -11,6 +11,7 @@ import streamlit.components.v1 as components
 import numpy as np
 from datetime import datetime, timezone
 import statsmodels 
+from statsmodels.tsa.seasonal import seasonal_decompose
 
 def main():
     page = st.sidebar.selectbox("Select a Page",["Original data", "Analysed data","Have a look"])
@@ -122,7 +123,7 @@ def analyseddata():
         ax3 = plt.subplot(313)
 
         try:
-            decomposition = statsmodels.tsa.seasonal_decompose(df_energy)
+            decomposition = seasonal_decompose(df_energy)
 
         except AttributeError:
             error_message = '''

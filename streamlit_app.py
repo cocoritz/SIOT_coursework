@@ -152,14 +152,14 @@ def analyseddata():
 
     trend_series = []
     for i, name in enumerate(df.columns.values):
-        decomposed = seasonal_decompose(df_energy)
+        decomposed = seasonal_decompose(df[name])
         trend_series.append(decomposed.trend)
         figure = decomposed.plot()
         figure.axes[0].set_title(name)
         figure.set_size_inches(20,8)
 
     trends = pd.concat(trend_series, axis=1)
-    st.line_chart(trends)
+    st.line_chart()
 
     #st.write(decomposed)
      

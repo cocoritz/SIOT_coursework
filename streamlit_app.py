@@ -139,8 +139,8 @@ def analyseddata():
     #for name in ndata.columns.values: 
         #axs.plot(ndata[name])
 
-    axs.set_title("Normalised data sources against time")
-    axs.legend()
+    #axs.set_title("Normalised data sources against time")
+    #axs.legend()
     st.plotly_chart(figure)
     
     

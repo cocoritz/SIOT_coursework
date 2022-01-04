@@ -20,7 +20,7 @@ def load_data():
 df = load_data()
 
 # show data on streamlit
-st.write(df
+st.write(df)
 # # Initialize connection.
 # client = pymongo.MongoClient(st.secrets["mongo"])
 
@@ -149,10 +149,3 @@ st.write(df
 
 # if __name__ == "__main__":
 #     main()
-
-
-
-
-                    
-
-

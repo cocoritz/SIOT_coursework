@@ -110,56 +110,56 @@ def analyseddata():
     df = pd.merge(df_energy, df_tweets,on='create_at',how='right')
     st.line_chart(df)
     
-    def decompose_series(df_energy):
-        '''
-        This function applies a seasonal decomposition to a time series. It will generate a season plot, a trending plot, and, finally, a resid plot
+#     def decompose_series(df_energy):
+#         '''
+#         This function applies a seasonal decomposition to a time series. It will generate a season plot, a trending plot, and, finally, a resid plot
 
-        Args.
-            ts (Pandas Series): a time series to be decomposed
-        '''
-        fig = plt.Figure(figsize=(12,7))
-        ax1 = plt.subplot(311)
-        ax2 = plt.subplot(312)
-        ax3 = plt.subplot(313)
+#         Args.
+#             ts (Pandas Series): a time series to be decomposed
+#         '''
+#         fig = plt.Figure(figsize=(12,7))
+#         ax1 = plt.subplot(311)
+#         ax2 = plt.subplot(312)
+#         ax3 = plt.subplot(313)
 
-        try:
-            decomposition = seasonal_decompose(df_energy)
+#         try:
+#             decomposition = seasonal_decompose(df_energy)
 
-        except AttributeError:
-            error_message = '''
-                            Seems that your DATE column is not in a proper format. 
-                            Be sure that it\'s in a valid format for a Pandas to_datetime function.
-                            '''
-            raise AttributeError(error_message)
+#         except AttributeError:
+#             error_message = '''
+#                             Seems that your DATE column is not in a proper format. 
+#                             Be sure that it\'s in a valid format for a Pandas to_datetime function.
+#                             '''
+#             raise AttributeError(error_message)
 
-        decomposition.seasonal.plot(color='green', ax=ax1, title='Seasonality')
-        plt.legend('')
-        #plt.title('Seasonality')
-        #st.pyplot()
+#         decomposition.seasonal.plot(color='green', ax=ax1, title='Seasonality')
+#         plt.legend('')
+#         #plt.title('Seasonality')
+#         #st.pyplot()
 
-        decomposition.trend.plot(color='green', ax=ax2, title='Trending')
-        plt.legend('')
-        #plt.title('Trending')
-        #st.pyplot()
+#         decomposition.trend.plot(color='green', ax=ax2, title='Trending')
+#         plt.legend('')
+#         #plt.title('Trending')
+#         #st.pyplot()
     
-        decomposition.resid.plot(color='green', ax=ax3, title='Resid')
-        plt.legend('')
-        #plt.title('Resid')
-        plt.subplots_adjust(hspace=1)
-        st.pyplot() 
+#         decomposition.resid.plot(color='green', ax=ax3, title='Resid')
+#         plt.legend('')
+#         #plt.title('Resid')
+#         plt.subplots_adjust(hspace=1)
+#         st.pyplot() 
        
-    decompose_series(df_energy)
+#     decompose_series(df_energy)
 
-    #trend_series = []
-    #for i, name in enumerate(df.columns.values):
-    #decomposed = statsmodels.tsa.seasonal_decompose(df_energy)
-        #trend_series.append(decomposed.trend)
-        #figure = decomposed.plot()
-        #figure.axes[0].set_title(name)
-        #figure.set_size_inches(20,8)
+    trend_series = []
+    for i, name in enumerate(df.columns.values):
+    decomposed = seasonal_decompose(df_energy)
+        trend_series.append(decomposed.trend)
+        figure = decomposed.plot()
+        figure.axes[0].set_title(name)
+        figure.set_size_inches(20,8)
 
-    #trends = pd.concat(trend_series, axis=1)
-    #st.line_chart(trends)
+    trends = pd.concat(trend_series, axis=1)
+    st.line_chart(trends)
 
     #st.write(decomposed)
      

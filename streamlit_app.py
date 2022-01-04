@@ -122,8 +122,47 @@ def analyseddata():
     trends = pd.concat(trend_series, axis=1)
     plt.show()
     
+    ndata = df.copy(deep=True)
+    ntrends = trends.copy(deep=True)
+
+    stats = {}
+
+    for name in ndata.columns.values:
+        mean = np.mean(ndata[name])
+        stdv = np.std(ndata[name])
+        stats[name] = {"mean":mean,"stdv":stdv}
+        ndata[name] = (ndata[name] - mean) / stdv
+
+    for name in trends.columns.values:
+        trends[name] = ( trends[name] - np.mean(trends[name]) ) / np.std(trends[name])
+        
+     fig, axs = newfigure()
+
+    for name in ndata.columns.values: 
+        axs.plot(ndata[name])
+
+    axs.set_title("Normalised data sources against time")
+    axs.legend()
+    plt.show()
     
- 
+    
+    def plot_scatter_matrix(data):
+        dim = len(data.columns.values)
+        fig, axs = newfigure(dim, dim, sharex='col', sharey='row', figsize=(10,10))
+        fig.tight_layout()
+        for row, iname in enumerate(data.columns.values):
+            for col, jname in enumerate(data.columns.values):
+                axs[row,col].scatter(data[jname], data[iname], s=5)
+#               axs[row,col].set_aspect(1.0, adjustable='box', share=True)
+                if col == 0:
+                    axs[row,col].set_ylabel(iname)
+                if row == len(data.columns.values)-1:
+                    axs[row,col].set_xlabel(jname)
+            
+        return fig, axs
+
+    fig, axs = plot_scatter_matrix(df)
+    plt.show()
     
    
     #st.write(decomposed)

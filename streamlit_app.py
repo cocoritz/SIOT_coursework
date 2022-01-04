@@ -24,7 +24,7 @@ import numpy as np
 # x_tweets = list(extracted_data)
 # df_tweets= pd.DataFrame(extracted_tweets)
 
-url = https://github.com/cocoritz/SIOT_coursework/blob/0c7bf1799d0dde0eba405525bb74e4d2997b54f5/Tweets_climatechange_and_energy.csv
+url = 'https://github.com/cocoritz/SIOT_coursework/blob/0c7bf1799d0dde0eba405525bb74e4d2997b54f5/Tweets_climatechange_and_energy.csv'
 download = requests.get(url).content
 df_tweets = pd.read_csv(io.StringIO(download.decode('utf-8')))
 

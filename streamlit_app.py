@@ -14,31 +14,43 @@ import numpy as np
 
 # Initialize connection.
 client = pymongo.MongoClient(st.secrets["mongo"])
-mydb = client.iot
-mycol = mydb.readings
-extracted_data = mycol.find({},{"create_at":1 ,"_id":1})
-#x_tweets = list(extracted_data)
-df_tweets= pd.DataFrame(extracted_tweets)
 
-df_tweets['create_at']=pd.to_datetime(df_tweets['create_at'])
-df_tweets['create_at'] = df_tweets['create_at'].apply(remove_timezone)
+@st.cache(ttl=600)
+def get_data():
+    db = client.mydatabase
+    items = db.mycollection.find()
+    items = list(items)  # make hashable for st.cache
+    return items
 
-#Keep relevant time
-filt = ((df_tweets['create_at'] <= pd.to_datetime('2021-12-19 00:00'))& (df_tweets['create_at'] >= pd.to_datetime('2021-12-05 17:00')))
-df_tweets=df_tweets.loc[filt]
+items = get_data()
 
-#set time as index
-df_tweets.set_index('create_at', inplace=True)
+# Print results.
+for item in items:
+    st.write(f"{item['name']} has a :{item['pet']}:")
 
-#Simplify calculation
-df_tweets['number_of_tweets'] = 1
-#df_tweets.drop('_id', axis = 1, inplace= True)
+# extracted_data = mycol.find({},{"create_at":1 ,"_id":1})
+# x_tweets = list(extracted_data)
+# df_tweets= pd.DataFrame(extracted_tweets)
 
-#Resample per hour
-df_tweets.drop('_id', axis = 1, inplace= True)
-df_tweets = df_tweets['number_of_tweets'].resample('H').sum()
-df_tweets.plot()
-st.plot(df)
+# df_tweets['create_at']=pd.to_datetime(df_tweets['create_at'])
+# df_tweets['create_at'] = df_tweets['create_at'].apply(remove_timezone)
+
+# #Keep relevant time
+# filt = ((df_tweets['create_at'] <= pd.to_datetime('2021-12-19 00:00'))& (df_tweets['create_at'] >= pd.to_datetime('2021-12-05 17:00')))
+# df_tweets=df_tweets.loc[filt]
+
+# #set time as index
+# df_tweets.set_index('create_at', inplace=True)
+
+# #Simplify calculation
+# df_tweets['number_of_tweets'] = 1
+# #df_tweets.drop('_id', axis = 1, inplace= True)
+
+# #Resample per hour
+# df_tweets.drop('_id', axis = 1, inplace= True)
+# df_tweets = df_tweets['number_of_tweets'].resample('H').sum()
+# df_tweets.plot()
+# st.plot(df)
 
 
 # Pull data from the collection.

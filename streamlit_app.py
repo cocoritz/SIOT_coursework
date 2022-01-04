@@ -161,8 +161,8 @@ def analyseddata():
             
         return fig, axs
 
-    fig, axs = plot_scatter_matrix(df)
-    st.plotly_chart(fig)
+    figure1 = plot_scatter_matrix(df)
+    st.plotly_chart(figure1)
     
    
     #st.write(decomposed)

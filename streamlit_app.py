@@ -138,7 +138,7 @@ def analyseddata():
     #st.line_chart(df)
     
     st.subheader(' Normalised data')
-    st.write('This aims to easily visualise potentiel correlation')
+    st.write('This aims to easily visualise potentiel correlation- the data streams are both sampled in hours')
     ndata = df.copy(deep=True)
     stats = {}
     mean = np.mean(ndata)
@@ -149,7 +149,7 @@ def analyseddata():
     
     
     st.header('Seasonality and trend over time')
-    st.write('This shows the seasonality and trend of the data streams- the data streams are bothe sampled in hours')
+    st.write('This shows the seasonality and trend of the data streams')
     
     trend_series = []
     for i, name in enumerate(df.columns.values):

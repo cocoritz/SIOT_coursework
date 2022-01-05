@@ -140,7 +140,7 @@ def analyseddata():
     #st.line_chart(df)
     
     st.header(' Normalised data')
-    st.subheader('This aims to easily visualise potentiel correlation'.) 
+    st.subheader('This aims to easily visualise potentiel correlation') 
     ndata = df.copy(deep=True)
     stats = {}
     mean = np.mean(ndata)

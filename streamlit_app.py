@@ -134,7 +134,8 @@ def analyseddata():
     stats[name] = {"mean":mean,"stdv":stdv}
     mdata[name] = (mdata - mean) / stdv
     
-    df_normalised = pd.merge(mdata, ndata,on='create_at',how='right')
+    df_normalised = pd.merge(mdata, ndata)
+    st.write(df_normalised)
     st.line_chart(df_normalised)
         
     

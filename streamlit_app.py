@@ -83,9 +83,22 @@ def analyseddata():
     df_tweets.drop('text',axis= 1, inplace= True)
 
     # Resample per hour
-    df_tweets = df_tweets['number_of_tweets'].resample('H').sum()
+    option = st.selectbox('Choose your sampling rate',('Minute','Hour', 'Day', 'Week','Month'))
+    if option = 'Minute':
+        df_tweets = df_tweets['number_of_tweets'].resample('T').sum()
+    if option = 'Hour':
+        df_tweets = df_tweets['number_of_tweets'].resample('H').sum()
+    if option = 'Day':
+        df_tweets = df_tweets['number_of_tweets'].resample('D').sum()
+    if option = 'Week':
+        df_tweets = df_tweets['number_of_tweets'].resample('W').sum()
+    if option = 'Month':
+        df_tweets = df_tweets['number_of_tweets'].resample('M').sum()
+        
+    
     #st.write(df_tweets)
     st.line_chart(df_tweets)
+    
     
     st.header(' My household energy consumption in function of time')
     DATA_URL = ('Energy_consumption.csv')
@@ -106,12 +119,38 @@ def analyseddata():
     df_energy.index=pd.to_datetime(df_energy.index)
 
     #Resample 
+    
+    option = st.selectbox('Choose your sampling rate',('Minute','Hour', 'Day', 'Week','Month'))
+    if option = 'Minute':
+        df_tweets = df_tweets['number_of_tweets'].resample('T').sum()
+    if option = 'Hour':
+        df_tweets = df_tweets['number_of_tweets'].resample('H').sum()
+    if option = 'Day':
+        df_tweets = df_tweets['number_of_tweets'].resample('D').sum()
+    if option = 'Week':
+        df_tweets = df_tweets['number_of_tweets'].resample('W').sum()
+    if option = 'Month':
+        df_tweets = df_tweets['number_of_tweets'].resample('M').sum()
     df_energy = df_energy['Watts-hour'].resample('H').sum()
     #st.write(df_energy)
     st.line_chart(df_energy)
     
     df = pd.merge(df_energy, df_tweets,on='create_at',how='right')
     #st.line_chart(df)
+    
+    st.header(' Normalised data')
+    st.subheader('This aims to easily visualise potentiel correlation'.) 
+    ndata = df.copy(deep=True)
+    stats = {}
+    mean = np.mean(ndata)
+    stdv = np.std(ndata)
+    stats = {"mean":mean,"stdv":stdv}
+    ndata = (ndata - mean) / stdv
+    st.line_chart(ndata)
+    
+    
+    st.header('Correlation')
+    st.subheader('This shows the seasonality and trend of the data streams')
     
     trend_series = []
     for i, name in enumerate(df.columns.values):
@@ -122,16 +161,7 @@ def analyseddata():
         figure.axes[0].set_title(name)
         trends = pd.concat(trend_series, axis=1)
     
-    ndata = df.copy(deep=True)
-    stats = {}
-    mean = np.mean(ndata)
-    stdv = np.std(ndata)
-    stats = {"mean":mean,"stdv":stdv}
-    ndata = (ndata - mean) / stdv
-    st.line_chart(ndata)
-    
-   
-   
+    st.subheader('This shows the correlation of the data streams')
     t = df['Watts-hour']
     o = df['number_of_tweets']
     
@@ -151,6 +181,8 @@ def analyseddata():
     
      
 def information():
+    st.Title('More information about climate change and energy')
+    st.header("This is intresting posts i came across during my project!)
     class Tweet(object):
         def __init__(self, s, embed_str=False):
             if not embed_str:
@@ -169,7 +201,7 @@ def information():
             return components.html(self.text, height=600)
 
 
-    t = Tweet("https://twitter.com/OReillyMedia/status/901048172738482176").component()
+    t = Tweet("https://twitter.com/GasPriceWizard/status/1478400020672094213").component()
    
 if __name__ == "__main__":
     main()

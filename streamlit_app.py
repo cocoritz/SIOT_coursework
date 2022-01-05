@@ -18,31 +18,29 @@ def main():
     page = st.sidebar.selectbox("Select a Page",["Original data", "Analysed data","Have a look"])
 
     #First Page
-    if page == "Original data":
+    if page == "View original data":
         homepage()
 
     #Second Page
-    elif page == "Analysed data":
+    elif page == "View clean and analysed data":
         analyseddata()
     
     #Third Page
-    elif page == "Have a look":
+    elif page == "Want to know more?":
         information()
         
 def homepage():
-    st.write("""
-        # Sensing and Iot
-        ### original data ###
-        #""")
-    #tickers = ('#climatechange', '#energy','#energycrisis')
-    #dropdown= st.multiselect('Pick your #',tickers)
-
-    #start= st.date_input('Start',value= pd.to_datetime('2021-12-01'))
-    #end= st.date_input('End',value= pd.to_datetime('2021-12-20'))
-
+    
+    st.title('Sensing and Iot')
+    st.subheader('This projects aims to explore the correlation between the amount of energy a student house uses and the amount of shared information about the impact of energy on climate change on twitter.')
+    
+    st.header('Original data')
+    
+    st.subheader('First data stream: Student household energy consumption)
     image1='<iframe style="background: #FFFFFF;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2);" width="640" height="480" src="https://charts.mongodb.com/charts-twitter_api_project-zwapd/embed/charts?id=d315592c-260e-40a6-b67f-bb67e628d83d&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>'
     chart1= st.components.v1.html(image1, width=640, height=480, scrolling=False)
-
+    
+    st.subheader('Second data stream: Amount of tweets containing climate change and energy words )             
     image2='<iframe style="background: #FFFFFF;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2);" width="640" height="480" src="https://charts.mongodb.com/charts-twitter_api_project-zwapd/embed/charts?id=d24155ad-c4b4-4489-bbf7-efc169eb7a76&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>'
     chart2= st.components.v1.html(image2, width=640, height=480, scrolling=False)
 
@@ -59,6 +57,11 @@ def analyseddata():
 #     df_tweets= pd.DataFrame(x_tweets)
 #     df.plt()
 
+    st.title('Analysed data')
+    st.subheader('After being collected, data were cleaned and analysed')
+    
+    st.header(' Amount of tweets related to climate change and energy over time')
+    st.text('Click and play with the charts to zoom in')
     DATA_URL = ('Tweets_climatechange_and_energy.csv')
     df_tweets = pd.read_csv(DATA_URL)
 
@@ -84,7 +87,8 @@ def analyseddata():
     df_tweets = df_tweets['number_of_tweets'].resample('H').sum()
     #st.write(df_tweets)
     st.line_chart(df_tweets)
-
+    
+    st.header(' My household energy consumption in function of time')
     DATA_URL = ('Energy_consumption.csv')
     df_energy = pd.read_csv(DATA_URL)
 

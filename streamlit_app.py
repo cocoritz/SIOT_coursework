@@ -64,7 +64,7 @@ def analyseddata():
     st.title('Analysed data')
     st.write('After being collected, data were cleaned and analysed')
     
-    st.subheader(' Student household energy consumption over time')
+    
     DATA_URL = ('Energy_consumption.csv')
     df_energy = pd.read_csv(DATA_URL)
 
@@ -123,7 +123,8 @@ def analyseddata():
     if option == 'Month':
         df_tweets1 = df_tweets['number_of_tweets'].resample('M').sum()
         df_energy1 = df_energy['Watts-hour'].resample('M').sum()
-    
+    st.text("")
+    st.subheader(' Student household energy consumption over time')
     st.caption('Click and play with the charts to zoom in')
     st.line_chart(df_energy1)
     st.subheader(' Amount of tweets over time')
@@ -137,8 +138,7 @@ def analyseddata():
     #st.line_chart(df)
     
     st.subheader(' Normalised data')
-    st.text('This aims to easily visualise potentiel correlation')
-    st.caption('Click and play with the charts to zoom in')
+    st.write('This aims to easily visualise potentiel correlation')
     ndata = df.copy(deep=True)
     stats = {}
     mean = np.mean(ndata)
@@ -148,8 +148,8 @@ def analyseddata():
     st.line_chart(ndata)
     
     
-    st.header('Correlation')
-    st.caption('This shows the seasonality and trend of the data streams')
+    st.header('Seasonality and trend over time')
+    st.write('This shows the seasonality and trend of the data streams- the data streams are bothe sampled in hours')
     
     trend_series = []
     for i, name in enumerate(df.columns.values):
@@ -160,28 +160,28 @@ def analyseddata():
         figure.axes[0].set_title(name)
         trends = pd.concat(trend_series, axis=1)
     
-    st.subheader('This shows the correlation of the data streams')
-    t = df['Watts-hour']
-    o = df['number_of_tweets']
+#     st.write('Cross correlation')
+#     t = df['Watts-hour']
+#     o = df['number_of_tweets']
     
-    fig = plt.figure(figsize=(7, 2))
-    plt.scatter(t, o)
+#     fig = plt.figure(figsize=(7, 2))
+#     plt.scatter(t, o)
    
-    st.pyplot(fig)
+#     st.pyplot(fig)
     
-    t = df['Watts-hour']
-    o = df['number_of_tweets']
+#     t = df['Watts-hour']
+#     o = df['number_of_tweets']
     
-    fig = plt.figure(figsize=(7, 2))
-    plt.scatter(o, t)
+#     fig = plt.figure(figsize=(7, 2))
+#     plt.scatter(o, t)
     
-    st.pyplot(fig)
+#     st.pyplot(fig)
    
     
      
 def information():
-    st.Title('More information about climate change and energy')
-    st.header('This is intresting posts i came across during my project!')
+    st.title('More information about climate change and energy')
+    st.write('This is intresting posts i came across during my project!')
     class Tweet(object):
         def __init__(self, s, embed_str=False):
             if not embed_str:

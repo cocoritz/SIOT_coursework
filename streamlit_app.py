@@ -61,6 +61,7 @@ def analyseddata():
     st.subheader('After being collected, data were cleaned and analysed')
     st.header(' Amount of tweets related to climate change and energy over time')
     st.text('Click and play with the charts to zoom in')
+    
     DATA_URL = ('Tweets_climatechange_and_energy.csv')
     df_tweets = pd.read_csv(DATA_URL)
 

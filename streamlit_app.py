@@ -107,31 +107,9 @@ def analyseddata():
     #st.write(df_energy)
     st.line_chart(df_energy)
     
-
     df = pd.merge(df_energy, df_tweets,on='create_at',how='right')
     #st.line_chart(df)
     
-    ndata = df.copy(deep=True)
-    ntrends = trends.copy(deep=True)
-    stats = {}
-
-    for name in ndata.columns.values:
-        mean = np.mean(ndata[name])
-        stdv = np.std(ndata[name])
-        stats[name] = {"mean":mean,"stdv":stdv}
-        ndata[name] = (ndata[name] - mean) / stdv
-
-    for name in trends.columns.values:
-        trends[name] = ( trends[name] - np.mean(trends[name]) ) / np.std(trends[name])
-        
-    figure = plt.subplots()
-    #for name in ndata.columns.values: 
-        #axs.plot(ndata[name])
-
-    #axs.set_title("Normalised data sources against time")
-    #axs.legend()
-    st.plotly_chart(figure)
-
     trend_series = []
     for i, name in enumerate(df.columns.values):
         decomposed = seasonal_decompose(df[name])
@@ -140,9 +118,21 @@ def analyseddata():
         st.plotly_chart(figure)
         figure.axes[0].set_title(name)
         trends = pd.concat(trend_series, axis=1)
+    
+    ndata = df.copy(deep=True)
+    ntrends = trends.copy(deep=True)
+    stats = {}
+    for name in ndata.columns.values:
+        mean = np.mean(ndata[name])
+        stdv = np.std(ndata[name])
+        stats[name] = {"mean":mean,"stdv":stdv}
+        ndata[name] = (ndata[name] - mean) / stdv
+        st.line_chart(ndata[name])  
 
-    
-    
+    for name in trends.columns.values:
+        trends[name] = ( trends[name] - np.mean(trends[name]) ) / np.std(trends[name])
+      
+   
     
     
 #     dim = len(df.columns.values)

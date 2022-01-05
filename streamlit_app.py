@@ -127,18 +127,17 @@ def analyseddata():
     ndata = (ndata - mean) / stdv
     st.line_chart(ndata)
     
-    def scatter_plot():
-    #Create numpy array for the visualisation
-        x = df['Watts-hour']
-        y = df['number_of_tweets']
+   
+   
+    t = df['Watts-hour']
+    o = df['number_of_tweets']
     
-        fig = plt.figure(figsize=(10, 4))
-        plt.scatter(x, y)
+    fig = plt.figure(figsize=(10, 4))
+    plt.scatter(t, o)
     
-        st.balloons()
-        st.pyplot(fig)
-    
-    scatterplot()
+    st.balloons()
+    st.pyplot(fig)
+   
     
      
 def information():

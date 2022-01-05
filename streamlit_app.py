@@ -132,10 +132,17 @@ def analyseddata():
     t = df['Watts-hour']
     o = df['number_of_tweets']
     
-    fig = plt.figure(figsize=(10, 4))
+    fig = plt.figure(figsize=(7, 2))
     plt.scatter(t, o)
+   
+    st.pyplot(fig)
     
-    st.balloons()
+    t = df['Watts-hour']
+    o = df['number_of_tweets']
+    
+    fig = plt.figure(figsize=(7, 2))
+    plt.scatter(o, t)
+    
     st.pyplot(fig)
    
     

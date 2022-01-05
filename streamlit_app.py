@@ -84,22 +84,22 @@ def analyseddata():
 
     # Resample per hour
     option = st.selectbox('Choose your sampling rate',('Minute','Hour', 'Day', 'Week','Month'))
-    if option = 'Minute':
-        df_tweets = df_tweets['number_of_tweets'].resample('T').sum()
+    if option == 'Minute':
+        df_tweets1 = df_tweets['number_of_tweets'].resample('T').sum()
     if option = 'Hour':
-        df_tweets = df_tweets['number_of_tweets'].resample('H').sum()
-    if option = 'Day':
-        df_tweets = df_tweets['number_of_tweets'].resample('D').sum()
-    if option = 'Week':
-        df_tweets = df_tweets['number_of_tweets'].resample('W').sum()
-    if option = 'Month':
-        df_tweets = df_tweets['number_of_tweets'].resample('M').sum()
+        df_tweets1 = df_tweets['number_of_tweets'].resample('H').sum()
+    if option == 'Day':
+        df_tweets1 = df_tweets['number_of_tweets'].resample('D').sum()
+    if option == 'Week':
+        df_tweets1 = df_tweets['number_of_tweets'].resample('W').sum()
+    if option == 'Month':
+        df_tweets1 = df_tweets['number_of_tweets'].resample('M').sum()
         
     
     #st.write(df_tweets)
-    st.line_chart(df_tweets)
+    st.line_chart(df_tweets1)
     
-    
+    df_tweets == df_tweets['number_of_tweets'].resample('H').sum()
     st.header(' My household energy consumption in function of time')
     DATA_URL = ('Energy_consumption.csv')
     df_energy = pd.read_csv(DATA_URL)
@@ -121,20 +121,21 @@ def analyseddata():
     #Resample 
     
     option = st.selectbox('Choose your sampling rate',('Minute','Hour', 'Day', 'Week','Month'))
-    if option = 'Minute':
-        df_tweets = df_tweets['number_of_tweets'].resample('T').sum()
-    if option = 'Hour':
-        df_tweets = df_tweets['number_of_tweets'].resample('H').sum()
-    if option = 'Day':
-        df_tweets = df_tweets['number_of_tweets'].resample('D').sum()
-    if option = 'Week':
-        df_tweets = df_tweets['number_of_tweets'].resample('W').sum()
-    if option = 'Month':
-        df_tweets = df_tweets['number_of_tweets'].resample('M').sum()
-    df_energy = df_energy['Watts-hour'].resample('H').sum()
-    #st.write(df_energy)
-    st.line_chart(df_energy)
+    if option == 'Minute':
+        df_energy1 = df_energy['Watts-hour'].resample('T').sum()
+    if option == 'Hour':
+        df_energy1 = df_energy['Watts-hour'].resample('H').sum()
+    if option == 'Day':
+        df_energy1 = df_energy['Watts-hour'].resample('D').sum()
+    if option == 'Week':
+        df_energy1 = df_energy['Watts-hour'].resample('W').sum()
+    if option == 'Month':
+        df_energy1 = df_energy['Watts-hour'].resample('M').sum()
+   
+    st.line_chart(df_energy1)
     
+    df_tweets = df_tweets['number_of_tweets'].resample('H').sum()
+    df_energy = df_energy['Watts-hour'].resample('H').sum()
     df = pd.merge(df_energy, df_tweets,on='create_at',how='right')
     #st.line_chart(df)
     

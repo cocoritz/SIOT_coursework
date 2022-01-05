@@ -138,7 +138,7 @@ def analyseddata():
         st.balloons()
         st.pyplot(fig)
     
-
+    scatterplot()
     
      
 def information():

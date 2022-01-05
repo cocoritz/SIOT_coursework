@@ -131,10 +131,14 @@ def analyseddata():
     stats = {}
     mean = np.mean(mdata)
     stdv = np.std(mdata)
-    stats[name] = {"mean":mean,"stdv":stdv}
-    mdata[name] = (mdata - mean) / stdv
-    
+    stats = {"mean":mean,"stdv":stdv}
+    mdata = (mdata - mean) / stdv
     st.line_chart(mdata)
+    
+    data = pd.crosstab(ndata, mdata)
+    fig = px.line(data)
+    st.write(fig)
+    
         
     
 

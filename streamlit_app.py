@@ -135,8 +135,7 @@ def analyseddata():
     mdata = (mdata - mean) / stdv
     st.line_chart(mdata)
     
-    data = pd.crosstab(ndata, mdata)
-    fig = px.line(data)
+    fig = plt.figure(mdata, ndata)
     st.write(fig)
     
         

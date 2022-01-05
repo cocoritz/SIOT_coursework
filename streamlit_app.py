@@ -127,7 +127,8 @@ def analyseddata():
         stdv = np.std(ndata[name])
         stats[name] = {"mean":mean,"stdv":stdv}
         ndata[name] = (ndata[name] - mean) / stdv
-        st.line_chart(ndata[name])  
+        
+    st.line_chart(ndata[name])  
 
     for name in trends.columns.values:
         trends[name] = ( trends[name] - np.mean(trends[name]) ) / np.std(trends[name])

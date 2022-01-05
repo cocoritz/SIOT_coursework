@@ -32,7 +32,7 @@ def main():
 def homepage():
     
     st.title('Sensing and Iot')
-    st.write('This projects aims to explore the correlation between the amount of energy a student house uses and the amount of shared information about the impact of energy on climate change on twitter.')
+    st.write('This projects aims to explore the correlation between the amount of energy a student house uses and the amount of tweets about the impact of energy on climate change.')
     
     st.subheader('Original data')
     
@@ -62,10 +62,43 @@ def analyseddata():
 #     df.plt()
 
     st.title('Analysed data')
-    st.text('After being collected, data were cleaned and analysed')
-    st.subheader(' Amount of tweets related to climate change and energy over time')
-    st.caption('Click and play with the charts to zoom in')
+    st.write('After being collected, data were cleaned and analysed')
     
+    st.subheader(' Student household energy consumption over time')
+    DATA_URL = ('Energy_consumption.csv')
+    df_energy = pd.read_csv(DATA_URL)
+
+    #Put same date format as tweets data 
+    df_energy['ts']=pd.to_datetime(df_energy['ts'])
+    df_energy.drop('sensors', axis = 1, inplace= True)
+    df_energy= df_energy.rename(columns={'ts': 'create_at'})
+    df_energy= df_energy.rename(columns={'newlight': 'Watts-hour'})
+
+    #Keep relevant time
+    filt = ((df_energy['create_at'] <= pd.to_datetime('2021-12-19 00:00'))& (df_energy['create_at'] >= pd.to_datetime('2021-12-05 17:00')))
+    df_energy=df_energy.loc[filt]
+
+    #Set time as index
+    df_energy.set_index('create_at', inplace=True)
+    df_energy.index=pd.to_datetime(df_energy.index)
+
+    #Resample 
+    option2 = st.selectbox('Choose your sampling rate',('Minute','Hour', 'Day', 'Week','Month'))
+    if option2 == 'Minute':
+        df_energy1 = df_energy['Watts-hour'].resample('T').sum()
+    if option2 == 'Hour':
+        df_energy1 = df_energy['Watts-hour'].resample('H').sum()
+    if option2 == 'Day':
+        df_energy1 = df_energy['Watts-hour'].resample('D').sum()
+    if option2 == 'Week':
+        df_energy1 = df_energy['Watts-hour'].resample('W').sum()
+    if option2 == 'Month':
+        df_energy1 = df_energy['Watts-hour'].resample('M').sum()
+    st.caption('Click and play with the charts to zoom in')
+    st.line_chart(df_energy1)
+    
+    st.subheader(' Amount of tweets over time')
+  
     DATA_URL = ('Tweets_climatechange_and_energy.csv')
     df_tweets = pd.read_csv(DATA_URL)
 
@@ -99,42 +132,10 @@ def analyseddata():
         df_tweets1 = df_tweets['number_of_tweets'].resample('W').sum()
     if option == 'Month':
         df_tweets1 = df_tweets['number_of_tweets'].resample('M').sum()
-        
+    st.caption('Click and play with the charts to zoom in')   
     st.line_chart(df_tweets1)
-    df_tweets == df_tweets['number_of_tweets'].resample('H').sum()
-    st.subheader(' My household energy consumption in function of time')
-    DATA_URL = ('Energy_consumption.csv')
-    df_energy = pd.read_csv(DATA_URL)
-
-    #Put same date format as tweets data 
-    df_energy['ts']=pd.to_datetime(df_energy['ts'])
-    df_energy.drop('sensors', axis = 1, inplace= True)
-    df_energy= df_energy.rename(columns={'ts': 'create_at'})
-    df_energy= df_energy.rename(columns={'newlight': 'Watts-hour'})
-
-    #Keep relevant time
-    filt = ((df_energy['create_at'] <= pd.to_datetime('2021-12-19 00:00'))& (df_energy['create_at'] >= pd.to_datetime('2021-12-05 17:00')))
-    df_energy=df_energy.loc[filt]
-
-    #Set time as index
-    df_energy.set_index('create_at', inplace=True)
-    df_energy.index=pd.to_datetime(df_energy.index)
-
-    #Resample 
-    option2 = st.selectbox('Choose your sampling rate',('Minute','Hour', 'Day', 'Week','Month'))
-    if option2 == 'Minute':
-        df_energy1 = df_energy['Watts-hour'].resample('T').sum()
-    if option2 == 'Hour':
-        df_energy1 = df_energy['Watts-hour'].resample('H').sum()
-    if option2 == 'Day':
-        df_energy1 = df_energy['Watts-hour'].resample('D').sum()
-    if option2 == 'Week':
-        df_energy1 = df_energy['Watts-hour'].resample('W').sum()
-    if option2 == 'Month':
-        df_energy1 = df_energy['Watts-hour'].resample('M').sum()
-   
-    st.line_chart(df_energy1)
     
+
     df_tweets = df_tweets['number_of_tweets'].resample('H').sum()
     df_energy = df_energy['Watts-hour'].resample('H').sum()
     df = pd.merge(df_energy, df_tweets,on='create_at',how='right')

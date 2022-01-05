@@ -183,7 +183,7 @@ def analyseddata():
      
 def information():
     st.Title('More information about climate change and energy')
-    st.header("This is intresting posts i came across during my project!)
+    st.header("This is intresting posts i came across during my project!')
     class Tweet(object):
         def __init__(self, s, embed_str=False):
             if not embed_str:

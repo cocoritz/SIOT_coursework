@@ -36,7 +36,7 @@ def homepage():
     
     st.header('Original data')
     
-    st.subheader('First data stream: Student household energy consumption)
+    st.subheader('First data stream: Student household energy consumption')
     image1='<iframe style="background: #FFFFFF;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2);" width="640" height="480" src="https://charts.mongodb.com/charts-twitter_api_project-zwapd/embed/charts?id=d315592c-260e-40a6-b67f-bb67e628d83d&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>'
     chart1= st.components.v1.html(image1, width=640, height=480, scrolling=False)
     
@@ -59,7 +59,6 @@ def analyseddata():
 
     st.title('Analysed data')
     st.subheader('After being collected, data were cleaned and analysed')
-    
     st.header(' Amount of tweets related to climate change and energy over time')
     st.text('Click and play with the charts to zoom in')
     DATA_URL = ('Tweets_climatechange_and_energy.csv')

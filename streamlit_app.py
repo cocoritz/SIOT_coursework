@@ -32,15 +32,15 @@ def main():
 def homepage():
     
     st.title('Sensing and Iot')
-    st.subheader('This projects aims to explore the correlation between the amount of energy a student house uses and the amount of shared information about the impact of energy on climate change on twitter.')
+    st.text('This projects aims to explore the correlation between the amount of energy a student house uses and the amount of shared information about the impact of energy on climate change on twitter.')
     
-    st.header('Original data')
+    st.subheader('Original data')
     
-    st.subheader('First data stream: Student household energy consumption')
+    st.text('First data stream: Student household energy consumption')
     image1='<iframe style="background: #FFFFFF;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2);" width="640" height="480" src="https://charts.mongodb.com/charts-twitter_api_project-zwapd/embed/charts?id=d315592c-260e-40a6-b67f-bb67e628d83d&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>'
     chart1= st.components.v1.html(image1, width=640, height=480, scrolling=False)
     
-    st.subheader('Second data stream: Amount of tweets containing climate change and energy words')             
+    st.text('Second data stream: Amount of tweets containing climate change and energy words')             
     image2='<iframe style="background: #FFFFFF;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2);" width="640" height="480" src="https://charts.mongodb.com/charts-twitter_api_project-zwapd/embed/charts?id=d24155ad-c4b4-4489-bbf7-efc169eb7a76&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>'
     chart2= st.components.v1.html(image2, width=640, height=480, scrolling=False)
 
@@ -58,9 +58,9 @@ def analyseddata():
 #     df.plt()
 
     st.title('Analysed data')
-    st.subheader('After being collected, data were cleaned and analysed')
-    st.header(' Amount of tweets related to climate change and energy over time')
-    st.text('Click and play with the charts to zoom in')
+    st.text('After being collected, data were cleaned and analysed')
+    st.subheader(' Amount of tweets related to climate change and energy over time')
+    st.caption('Click and play with the charts to zoom in')
     
     DATA_URL = ('Tweets_climatechange_and_energy.csv')
     df_tweets = pd.read_csv(DATA_URL)
@@ -96,12 +96,9 @@ def analyseddata():
     if option == 'Month':
         df_tweets1 = df_tweets['number_of_tweets'].resample('M').sum()
         
-    
-    #st.write(df_tweets)
     st.line_chart(df_tweets1)
-    
     df_tweets == df_tweets['number_of_tweets'].resample('H').sum()
-    st.header(' My household energy consumption in function of time')
+    st.subheader(' My household energy consumption in function of time')
     DATA_URL = ('Energy_consumption.csv')
     df_energy = pd.read_csv(DATA_URL)
 
@@ -120,17 +117,16 @@ def analyseddata():
     df_energy.index=pd.to_datetime(df_energy.index)
 
     #Resample 
-    
-    option = st.selectbox('Choose your sampling rate',('Minute','Hour', 'Day', 'Week','Month'))
-    if option == 'Minute':
+    option2 = st.selectbox('Choose your sampling rate',('Minute','Hour', 'Day', 'Week','Month'))
+    if option2 == 'Minute':
         df_energy1 = df_energy['Watts-hour'].resample('T').sum()
-    if option == 'Hour':
+    if option2 == 'Hour':
         df_energy1 = df_energy['Watts-hour'].resample('H').sum()
-    if option == 'Day':
+    if option2 == 'Day':
         df_energy1 = df_energy['Watts-hour'].resample('D').sum()
-    if option == 'Week':
+    if option2 == 'Week':
         df_energy1 = df_energy['Watts-hour'].resample('W').sum()
-    if option == 'Month':
+    if option2 == 'Month':
         df_energy1 = df_energy['Watts-hour'].resample('M').sum()
    
     st.line_chart(df_energy1)
@@ -140,8 +136,9 @@ def analyseddata():
     df = pd.merge(df_energy, df_tweets,on='create_at',how='right')
     #st.line_chart(df)
     
-    st.header(' Normalised data')
-    st.subheader('This aims to easily visualise potentiel correlation') 
+    st.subheader(' Normalised data')
+    st.text('This aims to easily visualise potentiel correlation')
+    st.caption('Click and play with the charts to zoom in')
     ndata = df.copy(deep=True)
     stats = {}
     mean = np.mean(ndata)
@@ -152,7 +149,7 @@ def analyseddata():
     
     
     st.header('Correlation')
-    st.subheader('This shows the seasonality and trend of the data streams')
+    st.caption('This shows the seasonality and trend of the data streams')
     
     trend_series = []
     for i, name in enumerate(df.columns.values):
@@ -164,21 +161,21 @@ def analyseddata():
         trends = pd.concat(trend_series, axis=1)
     
     st.subheader('This shows the correlation of the data streams')
-#     t = df['Watts-hour']
-#     o = df['number_of_tweets']
+    t = df['Watts-hour']
+    o = df['number_of_tweets']
     
-#     fig = plt.figure(figsize=(7, 2))
-#     plt.scatter(t, o)
+    fig = plt.figure(figsize=(7, 2))
+    plt.scatter(t, o)
    
-#     st.pyplot(fig)
+    st.pyplot(fig)
     
-#     t = df['Watts-hour']
-#     o = df['number_of_tweets']
+    t = df['Watts-hour']
+    o = df['number_of_tweets']
     
-#     fig = plt.figure(figsize=(7, 2))
-#     plt.scatter(o, t)
+    fig = plt.figure(figsize=(7, 2))
+    plt.scatter(o, t)
     
-#     st.pyplot(fig)
+    st.pyplot(fig)
    
     
      

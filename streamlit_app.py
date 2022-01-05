@@ -164,21 +164,21 @@ def analyseddata():
         trends = pd.concat(trend_series, axis=1)
     
     st.subheader('This shows the correlation of the data streams')
-    t = df['Watts-hour']
-    o = df['number_of_tweets']
+#     t = df['Watts-hour']
+#     o = df['number_of_tweets']
     
-    fig = plt.figure(figsize=(7, 2))
-    plt.scatter(t, o)
+#     fig = plt.figure(figsize=(7, 2))
+#     plt.scatter(t, o)
    
-    st.pyplot(fig)
+#     st.pyplot(fig)
     
-    t = df['Watts-hour']
-    o = df['number_of_tweets']
+#     t = df['Watts-hour']
+#     o = df['number_of_tweets']
     
-    fig = plt.figure(figsize=(7, 2))
-    plt.scatter(o, t)
+#     fig = plt.figure(figsize=(7, 2))
+#     plt.scatter(o, t)
     
-    st.pyplot(fig)
+#     st.pyplot(fig)
    
     
      

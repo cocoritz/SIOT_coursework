@@ -125,7 +125,7 @@ def analyseddata():
     stdv = np.std(ndata)
     stats = {"mean":mean,"stdv":stdv}
     ndata = (ndata - mean) / stdv
-        
+    st.line_chart(ndata)
     
     mdata = df_energy.copy(deep=True)
     stats = {}
@@ -134,9 +134,7 @@ def analyseddata():
     stats[name] = {"mean":mean,"stdv":stdv}
     mdata[name] = (mdata - mean) / stdv
     
-    df_normalised = pd.merge(mdata, ndata)
-    st.write(df_normalised)
-    st.line_chart(df_normalised)
+    st.line_chart(mdata)
         
     
 

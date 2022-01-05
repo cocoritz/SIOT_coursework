@@ -81,21 +81,6 @@ def analyseddata():
     #Set time as index
     df_energy.set_index('create_at', inplace=True)
     df_energy.index=pd.to_datetime(df_energy.index)
-
-    #Resample 
-    option2 = st.selectbox('Choose your sampling rate',('Minute','Hour', 'Day', 'Week','Month'))
-    if option2 == 'Minute':
-        df_energy1 = df_energy['Watts-hour'].resample('T').sum()
-    if option2 == 'Hour':
-        df_energy1 = df_energy['Watts-hour'].resample('H').sum()
-    if option2 == 'Day':
-        df_energy1 = df_energy['Watts-hour'].resample('D').sum()
-    if option2 == 'Week':
-        df_energy1 = df_energy['Watts-hour'].resample('W').sum()
-    if option2 == 'Month':
-        df_energy1 = df_energy['Watts-hour'].resample('M').sum()
-    st.caption('Click and play with the charts to zoom in')
-    st.line_chart(df_energy1)
     
     st.subheader(' Amount of tweets over time')
   
@@ -121,17 +106,38 @@ def analyseddata():
     df_tweets.drop('text',axis= 1, inplace= True)
 
     # Resample per hour
+
+    option2 = st.selectbox('Choose your sampling rate',('Minute','Hour', 'Day', 'Week','Month'))
+    if option2 == 'Minute':
+        df_energy1 = df_energy['Watts-hour'].resample('T').sum()
+    if option2 == 'Hour':
+        df_energy1 = df_energy['Watts-hour'].resample('H').sum()
+    if option2 == 'Day':
+        df_energy1 = df_energy['Watts-hour'].resample('D').sum()
+    if option2 == 'Week':
+        df_energy1 = df_energy['Watts-hour'].resample('W').sum()
+    if option2 == 'Month':
+        df_energy1 = df_energy['Watts-hour'].resample('M').sum()
+    
     option = st.selectbox('Choose your sampling rate',('Minute','Hour', 'Day', 'Week','Month'))
     if option == 'Minute':
         df_tweets1 = df_tweets['number_of_tweets'].resample('T').sum()
+        df_energy1 = df_energy['Watts-hour'].resample('T').sum()
     if option == 'Hour':
         df_tweets1 = df_tweets['number_of_tweets'].resample('H').sum()
+        df_energy1 = df_energy['Watts-hour'].resample('H').sum()
     if option == 'Day':
         df_tweets1 = df_tweets['number_of_tweets'].resample('D').sum()
+        df_energy1 = df_energy['Watts-hour'].resample('D').sum()
     if option == 'Week':
         df_tweets1 = df_tweets['number_of_tweets'].resample('W').sum()
+        df_energy1 = df_energy['Watts-hour'].resample('W').sum()
     if option == 'Month':
         df_tweets1 = df_tweets['number_of_tweets'].resample('M').sum()
+        df_energy1 = df_energy['Watts-hour'].resample('M').sum()
+    
+    st.caption('Click and play with the charts to zoom in')
+    st.line_chart(df_energy1)
     st.caption('Click and play with the charts to zoom in')   
     st.line_chart(df_tweets1)
     

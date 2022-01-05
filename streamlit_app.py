@@ -119,7 +119,7 @@ def analyseddata():
         figure.axes[0].set_title(name)
         trends = pd.concat(trend_series, axis=1)
     
-    ndata = df_tweets.copy(deep=True)
+    ndata = df.copy(deep=True)
     stats = {}
     mean = np.mean(ndata)
     stdv = np.std(ndata)

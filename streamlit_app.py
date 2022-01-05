@@ -15,7 +15,7 @@ from statsmodels.tsa.seasonal import seasonal_decompose
 import plotly.tools
 
 def main():
-    page = st.sidebar.selectbox("Select a Page",["Original data", "Analysed data","Have a look"])
+    page = st.sidebar.selectbox("Select a Page",["View original data", "View clean and analysed data","Want to know more?"])
 
     #First Page
     if page == "View original data":

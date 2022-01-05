@@ -86,7 +86,7 @@ def analyseddata():
     option = st.selectbox('Choose your sampling rate',('Minute','Hour', 'Day', 'Week','Month'))
     if option == 'Minute':
         df_tweets1 = df_tweets['number_of_tweets'].resample('T').sum()
-    if option = 'Hour':
+    if option == 'Hour':
         df_tweets1 = df_tweets['number_of_tweets'].resample('H').sum()
     if option == 'Day':
         df_tweets1 = df_tweets['number_of_tweets'].resample('D').sum()

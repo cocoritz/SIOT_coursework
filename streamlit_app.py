@@ -121,22 +121,20 @@ def analyseddata():
     
     ndata = df_tweets.copy(deep=True)
     stats = {}
-    for name in ndata.columns.values:
-        mean = np.mean(ndata[name])
-        stdv = np.std(ndata[name])
-        stats[name] = {"mean":mean,"stdv":stdv}
-        ndata[name] = (ndata[name] - mean) / stdv
+    mean = np.mean(ndata)
+    stdv = np.std(ndata)
+    stats = {"mean":mean,"stdv":stdv}
+    ndata = (ndata - mean) / stdv
         
     
     mdata = df_energy.copy(deep=True)
     stats = {}
-    for name in mdata.columns.values:
-        mean = np.mean(mdata[name])
-        stdv = np.std(mdata[name])
-        stats[name] = {"mean":mean,"stdv":stdv}
-        mdata[name] = (mdata[name] - mean) / stdv
+    mean = np.mean(mdata)
+    stdv = np.std(mdata)
+    stats[name] = {"mean":mean,"stdv":stdv}
+    mdata[name] = (mdata - mean) / stdv
     
-    df_normalised = ndata[name],mdata[name]
+    df_normalised = ndata,mdata
     st.line_chart(df_normalised)
         
     

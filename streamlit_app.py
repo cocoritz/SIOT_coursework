@@ -14,6 +14,7 @@ import statsmodels
 from statsmodels.tsa.seasonal import seasonal_decompose
 import plotly.tools
 from twilio.rest import Client #Twilio is a service that delivers SMS
+import scipy
 
 def main():
     page = st.sidebar.selectbox("Select a Page",["View original data", "View clean and analysed data","Want to know more?"])

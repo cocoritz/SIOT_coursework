@@ -160,15 +160,15 @@ def analyseddata():
     lagged_correlation = pd.DataFrame.from_dict({x: [df['Watt-hour'].corr(df['number_of_tweets'].shift(-t)) for t in range(x)] for x in df.columns})
     
      #Plotting the graph
-     plt.plot(lagged_correlation, color='green')
-     plt.rcParams["font.family"] = "times"
-     plt.rcParams['figure.figsize'] = 15, 10
-     plt.title('Tweets about climate change  correlated with energy consumption at increasing lags')
-     plt.xlabel('Lag of Watthour in hours')
-     plt.ylabel('Correlation Coefficient')
-     plt.show()
-#     st.line_chart(lagged_correlation)
-#     plt.show()
+    plt.plot(lagged_correlation, color='green')
+    plt.rcParams["font.family"] = "times"
+    plt.rcParams['figure.figsize'] = 15, 10
+    plt.title('Tweets about climate change  correlated with energy consumption at increasing lags')
+    plt.xlabel('Lag of Watthour in hours')
+    plt.ylabel('Correlation Coefficient')
+    plt.show()
+#   st.line_chart(lagged_correlation)
+#   plt.show()
       
 def information():
     result = st.button('Send tweets to my flatmates')

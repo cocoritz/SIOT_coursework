@@ -190,7 +190,7 @@ def information():
             client= Client(account_sid, auth_token)
             message = client.messages.create(from_= twilio_number,
                                                 to=target_number,
-                                                body='Hey, you have been using more electricity than usual at ! Check this article on Twitter to reduce your consumption! Check this: https://twitter.com/search?q=%23energy%20%23climate%20change&src=typed_query&f=live' #message containing information about climate change
+                                                body='Hey, you have been using more electricity than usual at ! Check this article on Twitter to reduce your consumption! Check this: https://twitter.com/search?q=%23energy%20%23climate%20change&src=typed_query&f=live') #message containing information about climate change
             print(message.body)
         
     if result:

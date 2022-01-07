@@ -17,7 +17,7 @@ The data collection directory contains all scripts related to the collection of 
 -`correlation_twitter_energy_analysis` : Script for calling and collecting the tweets related to climate change and energy
 
 Csv files containing the data as a backup for Mongodb are all stored in data storage folder:
-*`readings` : data of the original energy readings
+* `readings` : data of the original energy readings
 *`tweets` : data of the original tweets readings
 *`readings_clean` : clean energy data with noanomalies)-resampled in hours
 *`tweets_clean` : clean tweets data with no anomalies)-resampled in hours

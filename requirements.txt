@@ -5,4 +5,5 @@ statsmodels
 plotly
 twilio
 scipy
+seaborn 
 

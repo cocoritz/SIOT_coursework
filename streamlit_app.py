@@ -157,8 +157,7 @@ def analyseddata():
         trends = pd.concat(trend_series, axis=1)
       
     
-     lagged_correlation = pd.DataFrame.from_dict(
-     {x: [df['Watt-hour'].corr(df['number_of_tweets'].shift(-t)) for t in range(x)] for x in df.columns})
+     lagged_correlation = pd.DataFrame.from_dict({x: [df['Watt-hour'].corr(df['number_of_tweets'].shift(-t)) for t in range(x)] for x in df.columns})
     
      #Plotting the graph
      plt.plot(lagged_correlation, color='green')

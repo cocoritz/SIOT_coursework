@@ -215,7 +215,7 @@ def information():
                     return components.html(self.text, height=600)
 
 
-        t = Tweet("https://twitter.com/search?q=%23energy%20%23climatechange&src=typed_query").component()
+        t = Tweet("https://twitter.com/COP27_Egypt/status/1471362569357172736").component()
  
     
 

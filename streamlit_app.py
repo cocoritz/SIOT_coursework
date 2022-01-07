@@ -195,7 +195,7 @@ def information():
         
     if result:
         st.success('This is a success message!')
-        sendmessage()
+#         sendmessage()
         st.write('Woop woop, you have send the following message to my flatmates with this information:')
         class Tweet(object):
                 def __init__(self, s, embed_str=False):

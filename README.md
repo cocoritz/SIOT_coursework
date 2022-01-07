@@ -14,10 +14,14 @@ The data collection directory contains all scripts related to the collection of 
 **Files description:**
 
 -`lightsensors_to_MongoDB.ino` : Script for programing an esp32 which collect flashing light on my electricity meters ( 1 flashes = 1 Wh)
--`xxx` : Script for calling and collecting the tweets related to climate change and energy
--`xxx` : script to set up AWS services to run continously `xxx`
+-`correlation_twitter_energy_analysis` : Script for calling and collecting the tweets related to climate change and energy
 
--`xxx and xxx` are csv files containing the data as a backup for Mongodb 
+Csv files containing the data as a backup for Mongodb are all stored in data storage folder:
+-`readings` : data of the original energy readings
+-`tweets` : data of the original tweets readings
+-`readings_clean` : clean energy data with noanomalies)-resampled in hours
+-`tweets_clean` : clean tweets data with no anomalies)-resampled in hours
+-`energy_prediction`: values of the enrgy predictions in the next days
 
 #### It is important to note that the script files will not run without the API keys and credentials files. These have not been committed to GitHub.
 
@@ -27,11 +31,12 @@ The data analysis contains all script related to cleaning, correlation, predicti
 
 **Files description:**
 
--`xxx`: Script cleaning and analysising the twitter data
--`xxx`: Script cleaning, analysing and predicting the energy consumption data
--`xxx`: Script exploring the correlation between the two data streams 
+-`Twitter_data_analysis.py`: Script cleaning and analysising the twitter data
+-`Energy_data_analysis_&_prediction.py`: Script cleaning, analysing and predicting the energy consumption data
+-`correlation_twitter_energy_analysis.py`: Script exploring the correlation between the two data streams 
+-`SMS.py`: script to send the sms based on prediction compare to actual values
 
--`xxx`: Script to run the streamlit app 
--requirments.txt : specifying what python packages are required to run xxx
+-`streamlit_app.py`: Script to run the streamlit app 
+-requirments.txt : specifying what python packages are required to run `streamlit_app.py`
 
 #### the project was powered by aws, MongoDB Atlas and streamlit

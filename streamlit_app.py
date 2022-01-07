@@ -208,10 +208,10 @@ def information():
                         self.text = s
 
                 def _repr_html_(self):
-                return self.text
+                    return self.text
 
                 def component(self):
-                return components.html(self.text, height=600)
+                    return components.html(self.text, height=600)
 
 
         t = Tweet("https://twitter.com/search?q=%23energy%20%23climatechange&src=typed_query").component()

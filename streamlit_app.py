@@ -158,29 +158,29 @@ def analyseddata():
         
      def df_shifted(df, target=None, lag=0):
         if not lag and not target:
-        return df       
-        new = {}
-        for c in df.columns:
-            if c == target:
-                new[c] = df[target]
-            else:
-                new[c] = df[c].shift(periods=lag)
-        return  pd.DataFrame(data=new)
+            return df       
+            new = {}
+            for c in df.columns:
+                if c == target:
+                    new[c] = df[target]
+                else:
+                    new[c] = df[c].shift(periods=lag)
+            return  pd.DataFrame(data=new)
     
         #test various lags (to see which lag gives the highest correlations)
 
 
-    lagged_correlation = pd.DataFrame.from_dict(
-    {x: [df['Watt-hour'].corr(df['number_of_tweets'].shift(-t)) for t in range(x)] for x in df.columns})
-
-    #Plotting the graph
-    plt.plot(lagged_correlation, color='green')
-    plt.rcParams["font.family"] = "times"
-    plt.rcParams['figure.figsize'] = 15, 10
-    plt.title('Tweets about climate change  correlated with energy consumption at increasing lags')
-    plt.xlabel('Lag of Watthour in hours')
-    plt.ylabel('Correlation Coefficient')
-    plt.show()
+     lagged_correlation = pd.DataFrame.from_dict(
+     {x: [df['Watt-hour'].corr(df['number_of_tweets'].shift(-t)) for t in range(x)] for x in df.columns})
+    
+     #Plotting the graph
+     plt.plot(lagged_correlation, color='green')
+     plt.rcParams["font.family"] = "times"
+     plt.rcParams['figure.figsize'] = 15, 10
+     plt.title('Tweets about climate change  correlated with energy consumption at increasing lags')
+     plt.xlabel('Lag of Watthour in hours')
+     plt.ylabel('Correlation Coefficient')
+     plt.show()
 #     st.line_chart(lagged_correlation)
 #     plt.show()
     

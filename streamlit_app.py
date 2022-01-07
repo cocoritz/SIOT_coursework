@@ -155,21 +155,8 @@ def analyseddata():
         st.plotly_chart(figure)
         figure.axes[0].set_title(name)
         trends = pd.concat(trend_series, axis=1)
-        
-     def df_shifted(df, target=None, lag=0):
-        if not lag and not target:
-            return df       
-            new = {}
-            for c in df.columns:
-                if c == target:
-                    new[c] = df[target]
-                else:
-                    new[c] = df[c].shift(periods=lag)
-            return  pd.DataFrame(data=new)
+      
     
-        #test various lags (to see which lag gives the highest correlations)
-
-
      lagged_correlation = pd.DataFrame.from_dict(
      {x: [df['Watt-hour'].corr(df['number_of_tweets'].shift(-t)) for t in range(x)] for x in df.columns})
     
@@ -183,11 +170,7 @@ def analyseddata():
      plt.show()
 #     st.line_chart(lagged_correlation)
 #     plt.show()
-    
-
-   
-    
-     
+      
 def information():
     result = st.button('Send tweets to my flatmates')
 

@@ -179,43 +179,42 @@ def analyseddata():
     
      
 def information():
-    
-result = st.button('Send tweets to my flatmates')
+    result = st.button('Send tweets to my flatmates')
 
-account_sid='ACf812975e1184eceb41937109fb8b306d' #keys from Twilio - desactivated
-auth_token ='615eb1650437f1b1c5a29bb8a9730ed1'
-twilio_number='+17692468545'
-target_number ='+447753129103' #insert the phone numbers - remove for privacy 
+    account_sid='ACf812975e1184eceb41937109fb8b306d' #keys from Twilio - desactivated
+    auth_token ='615eb1650437f1b1c5a29bb8a9730ed1'
+    twilio_number='+17692468545'
+    target_number ='+447753129103' #insert the phone numbers - remove for privacy 
 
-def sendmessage(): #function to send SMS
-        client= Client(account_sid, auth_token)
-        message = client.messages.create(from_= twilio_number,
-                                              to=target_number,
-                                              body='Hey, you have been using more electricity than usual at ! Check this article on Twitter to reduce your consumption! Check this: https://twitter.com/search?q=%23energy%20%23climate%20change&src=typed_query&f=live') #message containing information about climate change
-        print(message.body)
+    def sendmessage(): #function to send SMS
+            client= Client(account_sid, auth_token)
+            message = client.messages.create(from_= twilio_number,
+                                                to=target_number,
+                                                body='Hey, you have been using more electricity than usual at ! Check this article on Twitter to reduce your consumption! Check this: https://twitter.com/search?q=%23energy%20%23climate%20change&src=typed_query&f=live') #message containing information about climate change
+            print(message.body)
         
-if result:
-    sendmessage()
-    st.write('Woop woop, you have send the following message to my flatmates with this information:!)
-    class Tweet(object):
-             def __init__(self, s, embed_str=False):
-                if not embed_str:
-                # Use Twitter's oEmbed API
-                # https://dev.twitter.com/web/embedded-tweets
-                    api = "https://publish.twitter.com/oembed?url={}".format(s)
-                    response = requests.get(api)
-                    self.text = response.json()["html"]
-                else:
-                    self.text = s
+    if result:
+        sendmessage()
+        st.write('Woop woop, you have send the following message to my flatmates with this information:!)
+        class Tweet(object):
+                def __init__(self, s, embed_str=False):
+                    if not embed_str:
+                    # Use Twitter's oEmbed API
+                    # https://dev.twitter.com/web/embedded-tweets
+                        api = "https://publish.twitter.com/oembed?url={}".format(s)
+                        response = requests.get(api)
+                        self.text = response.json()["html"]
+                    else:
+                        self.text = s
 
-            def _repr_html_(self):
-            return self.text
+                def _repr_html_(self):
+                return self.text
 
-            def component(self):
-            return components.html(self.text, height=600)
+                def component(self):
+                return components.html(self.text, height=600)
 
 
-    t = Tweet("https://twitter.com/search?q=%23energy%20%23climatechange&src=typed_query").component()
+        t = Tweet("https://twitter.com/search?q=%23energy%20%23climatechange&src=typed_query").component()
  
     
 

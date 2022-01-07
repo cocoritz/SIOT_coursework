@@ -106,10 +106,7 @@ def analyseddata():
 
     # Resample per hour
     
-    option = st.selectbox('Choose your sampling rate',('Minute','Hour', 'Day', 'Week','Month'))
-    if option == 'Minute':
-        df_tweets1 = df_tweets['Number_of_tweets_on_climatechange/energy'].resample('T').sum()
-        df_energy1 = df_energy['Watt-hour'].resample('T').sum()
+    option = st.selectbox('Choose your sampling rate',('Hour', 'Day', 'Week','Month'))
     if option == 'Hour':
         df_tweets1 = df_tweets['Number_of_tweets_on_climatechange/energy'].resample('H').sum()
         df_energy1 = df_energy['Watt-hour'].resample('H').sum()
@@ -158,23 +155,36 @@ def analyseddata():
         st.plotly_chart(figure)
         figure.axes[0].set_title(name)
         trends = pd.concat(trend_series, axis=1)
+        
+     def df_shifted(df, target=None, lag=0):
+        if not lag and not target:
+        return df       
+        new = {}
+        for c in df.columns:
+            if c == target:
+                new[c] = df[target]
+            else:
+                new[c] = df[c].shift(periods=lag)
+        return  pd.DataFrame(data=new)
     
-#     st.write('Cross correlation')
-#     t = df['Watts-hour']
-#     o = df['number_of_tweets']
+        #test various lags (to see which lag gives the highest correlations)
+
+
+    lagged_correlation = pd.DataFrame.from_dict(
+    {x: [df['Watt-hour'].corr(df['number_of_tweets'].shift(-t)) for t in range(x)] for x in df.columns})
+
+    #Plotting the graph
+    plt.plot(lagged_correlation, color='green')
+    plt.rcParams["font.family"] = "times"
+    plt.rcParams['figure.figsize'] = 15, 10
+    plt.title('Tweets about climate change  correlated with energy consumption at increasing lags')
+    plt.xlabel('Lag of Watthour in hours')
+    plt.ylabel('Correlation Coefficient')
+    plt.show()
+#     st.line_chart(lagged_correlation)
+#     plt.show()
     
-#     fig = plt.figure(figsize=(7, 2))
-#     plt.scatter(t, o)
-   
-#     st.pyplot(fig)
-    
-#     t = df['Watts-hour']
-#     o = df['number_of_tweets']
-    
-#     fig = plt.figure(figsize=(7, 2))
-#     plt.scatter(o, t)
-    
-#     st.pyplot(fig)
+
    
     
      

@@ -13,6 +13,7 @@ from datetime import datetime, timezone
 import statsmodels 
 from statsmodels.tsa.seasonal import seasonal_decompose
 import plotly.tools
+from twilio.rest import Client #Twilio is a service that delivers SMS
 
 def main():
     page = st.sidebar.selectbox("Select a Page",["View original data", "View clean and analysed data","Want to know more?"])
@@ -65,7 +66,7 @@ def analyseddata():
     st.write('After being collected, data were cleaned and analysed')
     
     
-    DATA_URL = ('Energy_consumption.csv')
+    DATA_URL = ('data/energy_clean.csv')
     df_energy = pd.read_csv(DATA_URL)
 
     #Put same date format as tweets data 
@@ -82,9 +83,7 @@ def analyseddata():
     df_energy.set_index('create_at', inplace=True)
     df_energy.index=pd.to_datetime(df_energy.index)
     
-
-  
-    DATA_URL = ('Tweets_climatechange_and_energy.csv')
+    DATA_URL = ('data/tweets.csv')
     df_tweets = pd.read_csv(DATA_URL)
 
     def remove_timezone(dt):
@@ -180,28 +179,45 @@ def analyseddata():
     
      
 def information():
-    st.title('More information about climate change and energy')
-    st.write('This is intresting posts i came across during my project!')
+    
+result = st.button('Send tweets to my flatmates')
+
+account_sid='ACf812975e1184eceb41937109fb8b306d' #keys from Twilio - desactivated
+auth_token ='615eb1650437f1b1c5a29bb8a9730ed1'
+twilio_number='+17692468545'
+target_number ='+447753129103' #insert the phone numbers - remove for privacy 
+
+def sendmessage(): #function to send SMS
+        client= Client(account_sid, auth_token)
+        message = client.messages.create(from_= twilio_number,
+                                              to=target_number,
+                                              body='Hey, you have been using more electricity than usual at ! Check this article on Twitter to reduce your consumption! Check this: https://twitter.com/search?q=%23energy%20%23climate%20change&src=typed_query&f=live') #message containing information about climate change
+        print(message.body)
+        
+if result:
+    sendmessage()
+    st.write('Woop woop, you have send the following message to my flatmates with this information:!)
     class Tweet(object):
-        def __init__(self, s, embed_str=False):
-            if not embed_str:
+             def __init__(self, s, embed_str=False):
+                if not embed_str:
                 # Use Twitter's oEmbed API
                 # https://dev.twitter.com/web/embedded-tweets
-                api = "https://publish.twitter.com/oembed?url={}".format(s)
-                response = requests.get(api)
-                self.text = response.json()["html"]
-            else:
-                self.text = s
+                    api = "https://publish.twitter.com/oembed?url={}".format(s)
+                    response = requests.get(api)
+                    self.text = response.json()["html"]
+                else:
+                    self.text = s
 
-        def _repr_html_(self):
+            def _repr_html_(self):
             return self.text
 
-        def component(self):
+            def component(self):
             return components.html(self.text, height=600)
 
 
-    t = Tweet("https://twitter.com/GasPriceWizard/status/1478400020672094213").component()
-   
+    t = Tweet("https://twitter.com/search?q=%23energy%20%23climatechange&src=typed_query").component()
+ 
+    
 
 if __name__ == "__main__":
     main()

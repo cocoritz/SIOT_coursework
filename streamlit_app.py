@@ -71,7 +71,7 @@ def analyseddata():
 
     #Put same date format as tweets data 
     df_energy['ts']=pd.to_datetime(df_energy['ts'])
-    df_energy.drop('sensors', axis = 1, inplace= True)
+    #df_energy.drop('sensors', axis = 1, inplace= True)
     df_energy= df_energy.rename(columns={'ts': 'create_at'})
     df_energy= df_energy.rename(columns={'newlight': 'Watt-hour'})
 

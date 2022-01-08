@@ -168,10 +168,8 @@ def analyseddata():
 def information():
     result = st.button('Send tweets to my flatmates')
 
-    account_sid='ACf812975e1184eceb41937109fb8b306d' #keys from Twilio - desactivated
-    auth_token ='615eb1650437f1b1c5a29bb8a9730ed1'
-    twilio_number='+17692468545'
-    target_number ='' #insert the phone numbers - remove for privacy 
+    
+    
 
     def sendmessage(): #function to send SMS
             client= Client(account_sid, auth_token)

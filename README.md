@@ -32,7 +32,7 @@ The data analysis contains all script related to cleaning, correlation, predicti
 **Files description:**
 
 * `Twitter_data_analysis.py`: Script cleaning and analysising the twitter data
-* `Energy_data_analysis.py`: Script cleaning, analysing and predicting the energy consumption data
+* `Energy_data_analysis.py`: Script cleaning and analysing  the energy consumption data
 * `Energy_prediction.py`: Script predicting the next days energy consumption
 * `correlation_twitter_energy_analysis.py`: Script exploring the correlation between the two data streams 
 * `SMS.py`: script to send the sms based on prediction compare to actual values

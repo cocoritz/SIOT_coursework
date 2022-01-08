@@ -157,12 +157,6 @@ def analyseddata():
         st.plotly_chart(figure)
         figure.axes[0].set_title(name)
         trends = pd.concat(trend_series, axis=1)
-      
-    
-    lagged_correlation = pd.DataFrame.from_dict({x: [df['Watt-hour'].corr(df['Number_of_tweets_on_climatechange/energy'].shift(-t)) for t in range(48)] for x in df.columns})
-    
-     #Plotting the graph
-    st.line_chart(lagged_correlation)
 
       
 def information():

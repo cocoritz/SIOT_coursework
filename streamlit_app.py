@@ -35,8 +35,7 @@ def main():
 def homepage():
     
     st.title('Sensing and Iot')
-    st.write('This projects aims to explore the correlation between the amount of energy a student house uses and the amount of tweets about the impact of energy on climate change.')
-    
+    st.write('This projects aims to understand whether there is a correlation between my household energy consumption and shared information about climate change we see on Twitter')
  
     
     st.subheader('Original energy data stream') 

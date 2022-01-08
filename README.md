@@ -14,7 +14,7 @@ The data collection directory contains all scripts related to the collection of 
 **Files description:**
 
 * `lightsensors_to_MongoDB.ino` : Script for programing an esp32 which collect flashing light on my electricity meters ( 1 flashes = 1 Wh)
-* `correlation_twitter_energy_analysis` : Script for calling and collecting the tweets related to climate change and energy
+* `twitter_search_climatechange_energy` : Script for calling and collecting the tweets related to climate change and energy
 
 Csv files containing the data as a backup for Mongodb are all stored in data storage folder:
 * `readings` : data of the original energy readings
